@@ -15,9 +15,9 @@ from fastapi.staticfiles import StaticFiles
 
 from pydantic import BaseModel
 
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # CONFIG
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 
@@ -34,9 +34,9 @@ DOCS_FOLDER = Path("docs")
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # VECTOR STORE
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
 @dataclass
 class VectorStore:
@@ -71,7 +71,7 @@ class VectorStore:
         self,
         query_embedding: List[float],
         top_k: int = TOP_K
-    ) -> List[Dict]:
+    ):
 
         if self.index.ntotal == 0:
             return []
@@ -105,11 +105,11 @@ class VectorStore:
 
 vs = VectorStore()
 
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # HELPERS
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
-def extract_text(path: Path) -> str:
+def extract_text(path: Path):
 
     if path.suffix.lower() == ".pdf":
 
@@ -129,7 +129,7 @@ def extract_text(path: Path) -> str:
         errors="ignore"
     )
 
-def chunk_text(text: str) -> List[str]:
+def chunk_text(text: str):
 
     words = text.split()
 
@@ -140,7 +140,7 @@ def chunk_text(text: str) -> List[str]:
     while i < len(words):
 
         chunk = " ".join(
-            words[i : i + CHUNK_SIZE]
+            words[i:i + CHUNK_SIZE]
         )
 
         if len(chunk.strip()) > 30:
@@ -150,7 +150,7 @@ def chunk_text(text: str) -> List[str]:
 
     return chunks
 
-def get_embedding(text: str) -> List[float]:
+def get_embedding(text: str):
 
     response = client.embeddings.create(
         model=EMBED_MODEL,
@@ -163,7 +163,7 @@ def load_all_docs():
 
     if not DOCS_FOLDER.exists():
 
-        print("docs/ folder not found")
+        print("docs folder not found")
 
         return
 
@@ -174,15 +174,13 @@ def load_all_docs():
 
     if not files:
 
-        print("No documents found")
+        print("No docs found")
 
         return
 
-    print(f"Loading {len(files)} document(s)...")
+    print(f"Loading {len(files)} documents")
 
     for path in files:
-
-        print(f"Processing: {path.name}")
 
         try:
 
@@ -201,26 +199,18 @@ def load_all_docs():
                     i
                 )
 
-            print(
-                f"✓ {path.name} "
-                f"({len(chunks)} chunks)"
-            )
+            print(f"Loaded {path.name}")
 
         except Exception as e:
 
-            print(f"Error: {e}")
+            print(e)
 
-    print(
-        f"\nReady — "
-        f"{vs.total_chunks} chunks loaded"
-    )
-
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # FASTAPI
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
 app = FastAPI(
-    title="FEAST Lab RAG API"
+    title="FEAST Lab API"
 )
 
 # STATIC FILES
@@ -240,9 +230,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # MODELS
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
 class ChatRequest(BaseModel):
 
@@ -258,69 +248,49 @@ class ChatResponse(BaseModel):
 
     chunks_used: List[Dict]
 
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 # STARTUP
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
 
 @app.on_event("startup")
 async def startup():
 
     load_all_docs()
 
-# ─────────────────────────────────────────────────────────────
-# WEBSITE ROUTES
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
+# WEBSITE
+# ─────────────────────────────────────────────
 
 @app.get("/")
 async def homepage():
 
     return FileResponse("static/index.html")
 
-@app.get("/finger-millet.html")
-async def finger_dashboard():
-
-    return FileResponse(
-        "static/finger-millet.html"
-    )
-
-@app.get("/pearl-millet.html")
-async def pearl_dashboard():
-
-    return FileResponse(
-        "static/pearl-millet.html"
-    )
-
-@app.get("/proso-millet.html")
-async def proso_dashboard():
-
-    return FileResponse(
-        "static/proso-millet.html"
-    )
-
-# ─────────────────────────────────────────────────────────────
-# API ROUTES
-# ─────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────
+# STATUS
+# ─────────────────────────────────────────────
 
 @app.get("/status")
 async def status():
 
     return {
         "ready": vs.total_chunks > 0,
-        "total_chunks": vs.total_chunks,
-        "documents": vs.sources()
+        "documents": vs.sources(),
+        "total_chunks": vs.total_chunks
     }
 
-@app.post(
-    "/chat",
-    response_model=ChatResponse
-)
+# ─────────────────────────────────────────────
+# CHAT
+# ─────────────────────────────────────────────
+
+@app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
 
     if vs.total_chunks == 0:
 
         raise HTTPException(
             status_code=503,
-            detail="Vector store empty."
+            detail="Vector store empty"
         )
 
     query_embedding = get_embedding(req.message)
@@ -338,19 +308,9 @@ async def chat(req: ChatRequest):
     system_prompt = f"""
 You are the FEAST Lab assistant.
 
-You help users understand:
-- FEAST Lab research
-- Publications
-- Nutritional science
-- Millet dashboards
-- Research projects
+Answer only using the provided context.
 
-Only answer using the retrieved context.
-
-If information is unavailable,
-say you don't know.
-
-Retrieved context:
+Context:
 
 {context}
 """

@@ -48,4 +48,56 @@ function closeDashboard(){
 
 }
 
+<script>
+
+const dashboardUrls = {
+
+  finger:'/static/finger-millet.html',
+  pearl:'/static/pearl-millet.html',
+  proso:'/static/proso-millet.html'
+
+};
+
+const dashboardTitles = {
+
+  finger:'🌾 Finger Millet Research Dashboard',
+  pearl:'🌿 Pearl Millet Research Dashboard',
+  proso:'🌱 Proso Millet Research Dashboard'
+
+};
+
+function openDashboard(key){
+
+  document.getElementById(
+    'dashboardOverlay'
+  ).style.display='flex';
+
+  document.getElementById(
+    'overlayTitle'
+  ).textContent =
+  dashboardTitles[key];
+
+  document.getElementById(
+    'dashboardFrame'
+  ).src =
+  dashboardUrls[key];
+
+  document.body.style.overflow='hidden';
+
+}
+
+function closeDashboard(){
+
+  document.getElementById(
+    'dashboardOverlay'
+  ).style.display='none';
+
+  document.getElementById(
+    'dashboardFrame'
+  ).src='';
+
+  document.body.style.overflow='';
+
+}
+
 </script>
