@@ -1,0 +1,71 @@
+FEAST LAB — PUBLICATIONS & PRESENTATIONS
+Food, Eating & Nutritional Science Technology Lab
+University of Missouri–Columbia
+Last updated: May 2026
+
+Total publications: 48 peer-reviewed articles | 12 book chapters | 6 patents pending
+
+═══════════════════════════════════════════════════════════
+RECENT PUBLICATIONS (2024–2026)
+═══════════════════════════════════════════════════════════
+
+2026
+----
+1. Ganji RS, Chang L, Krishnaswami K. (2026). "Retrieval-augmented generation for automated
+   laboratory knowledge management in nutritional science research." npj Digital Medicine, 9(1), 88.
+   DOI: 10.1038/s41746-026-01088-3
+   [Open Access] — Describes the RAG-powered FEAST Lab assistant system
+
+2. Webb M, Nair P, Krishnaswami K. (2026). "High-fiber dietary intervention and gut microbiome
+   response: a randomized controlled trial." Gut, 75(3), 412–425.
+   DOI: 10.1136/gutjnl-2025-331892
+
+3. Fontaine A, Krishnaswami K. (2026). "School food environment and childhood obesity prevalence
+   in rural Missouri counties: a spatial analysis." Pediatrics, 157(4), e2025064821. [In press]
+
+4. Chang L, Krishnaswami K. (2026). "AutoRecall: Large language model-assisted 24-hour dietary
+   recall analysis reduces analyst processing time by 70%." Journal of Nutrition, 156(2), 489–501.
+   DOI: 10.1093/jn/nxac026
+
+2025
+----
+5. Okafor J, Krishnaswami K, Webb M. (2025). "Ultra-processed food consumption and gut microbiome
+   diversity: a cross-sectional analysis of 400 adults." Public Health Nutrition, 28(6), 1204–1218.
+   DOI: 10.1017/S1368980025001847
+
+6. Fontaine A, Krishnaswami K. (2025). "Food desert prevalence in rural Missouri: a GIS-based
+   assessment of food access and diet quality." Public Health Nutrition, 28(3), 541–553.
+   DOI: 10.1017/S1368980024003142
+
+7. Nair P, Webb M, Krishnaswami K. (2025). "Fermented food consumption and gut microbial
+   alpha diversity: a systematic review and meta-analysis." Nutrients, 17(8), 1342.
+   DOI: 10.3390/nu17081342
+
+8. Krishnaswami K, Okafor J. (2025). "Meal timing, circadian rhythm disruption, and
+   cardiometabolic risk: evidence from the MU Cohort Study." American Journal of Clinical
+   Nutrition, 121(4), 892–905. DOI: 10.1093/ajcn/nqae087
+
+2024
+----
+9. Krishnaswami K, Fontaine A, Okafor J. (2024). "Dietary fiber intake and cardiometabolic
+   risk markers: 2-year findings from the MU Cohort Study." American Journal of Clinical
+   Nutrition, 119(3), 672–684. DOI: 10.1093/ajcn/nqad289
+
+10. Chang L, Krishnaswami K. (2024). "FoodVision: Convolutional neural network for food image
+    recognition and automated portion estimation." Journal of the Academy of Nutrition and
+    Dietetics, 124(7), 876–889. DOI: 10.1016/j.jand.2024.02.011
+
+═══════════════════════════════════════════════════════════
+SELECTED PRESENTATIONS & CONFERENCES
+═══════════════════════════════════════════════════════════
+- Nutrition 2026 (American Society for Nutrition), Boston MA — 3 oral presentations
+- Digestive Disease Week 2025, San Diego CA — microbiome session
+- American Public Health Association Annual Meeting 2025 — food environment symposium
+- MU Undergraduate Research Showcase 2026 — RAG lab assistant demo (Sresta Ganji)
+
+═══════════════════════════════════════════════════════════
+IN PREPARATION / UNDER REVIEW
+═══════════════════════════════════════════════════════════
+- Low-carb vs. Mediterranean diet RCT: 12-month metabolic outcomes (target: NEJM, 2026)
+- Missouri Food Access Atlas: statewide dataset paper (target: American Journal of Preventive Medicine)
+- Mobile market intervention and diet quality in food deserts (target: JAMA Network Open)

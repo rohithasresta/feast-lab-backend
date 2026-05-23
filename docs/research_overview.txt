@@ -1,0 +1,97 @@
+FEAST LAB — RESEARCH OVERVIEW
+Food, Eating & Nutritional Science Technology Lab
+University of Missouri–Columbia
+Principal Investigator: Dr. Kiruba Krishnaswami, PhD, RD
+Location: Health Sciences Building, Room 214, Columbia, MO 65211
+Contact: feast-lab@missouri.edu | (573) 882-4400
+Website: feaslab.missouri.edu
+
+═══════════════════════════════════════════════════════════
+MISSION
+═══════════════════════════════════════════════════════════
+The FEAST Lab investigates the complex relationships between dietary patterns, metabolic health,
+and chronic disease. We combine large-scale nutritional epidemiology with AI-driven analysis
+to understand what — and how — we eat, and what it means for long-term health outcomes.
+
+Our work spans basic nutritional science, public health research, and applied AI/ML for
+automated dietary assessment. We are committed to open science and community-engaged research,
+with a particular focus on underserved populations in rural Missouri.
+
+═══════════════════════════════════════════════════════════
+ACTIVE RESEARCH AREAS
+═══════════════════════════════════════════════════════════
+
+1. DIET & METABOLIC HEALTH
+   Study of how macronutrient composition, meal timing, and dietary patterns affect insulin
+   sensitivity, lipid profiles, and cardiometabolic risk across diverse populations.
+   Current projects:
+   - MU Cohort Study (n=3,200): 5-year longitudinal dietary tracking and metabolic outcomes
+   - Low-carbohydrate vs. Mediterranean diet RCT (n=180, recruiting)
+   - Meal timing and circadian rhythm study (n=60, active)
+   Lead researcher: Dr. Krishnaswami + Dr. James Okafor (postdoc)
+
+2. GUT MICROBIOME & NUTRITION
+   Characterizing how dietary fiber, fermented foods, and ultra-processed food consumption
+   shape gut microbial communities and systemic inflammation markers.
+   Current projects:
+   - Fiber intervention study: 8-week high-fiber diet and microbiome response (n=95, active)
+   - Ultra-processed food consumption and microbiome diversity (n=400 cross-sectional, analysis phase)
+   - Fermented food RCT: kefir, kimchi, kombucha effects on gut diversity (n=120, recruiting)
+   Lead researcher: Dr. Priya Nair (postdoc) + PhD student Marcus Webb
+
+3. FOOD ENVIRONMENT MAPPING
+   GIS-based analysis of food access, food desert prevalence, and the relationship between
+   neighborhood food environments and diet quality in urban and rural Missouri.
+   Current projects:
+   - Missouri Food Access Atlas (statewide GIS dataset, publication in prep)
+   - Rural food desert intervention study: mobile market impact on diet quality (n=200)
+   - School food environment and childhood obesity in Boone County (in review, Pediatrics)
+   Lead researcher: PhD student Alicia Fontaine + Dr. Krishnaswami
+
+4. AI-POWERED DIETARY ANALYSIS
+   Using computer vision, NLP, and large language models to automate 24-hour dietary recall
+   analysis, food frequency questionnaire processing, and nutrition label parsing at scale.
+   Current projects:
+   - FoodVision: CNN-based food image recognition and portion estimation (87% accuracy on 200-class dataset)
+   - AutoRecall: LLM-assisted 24-hour dietary recall processing (reduces analyst time by 70%)
+   - RAG-powered lab assistant: vector search across all lab documents for instant Q&A
+   Lead researcher: Sresta Ganji (AI Full Stack Engineer) + PhD student Leo Chang
+
+═══════════════════════════════════════════════════════════
+FUNDING
+═══════════════════════════════════════════════════════════
+Total active funding: $2.4M
+
+- NIH R01 DK118432: "Dietary patterns and cardiometabolic risk in diverse populations"
+  $1.8M | 2023–2027 | PI: Dr. Krishnaswami
+- USDA NIFA 2024-67001: "Food environment mapping and diet quality in rural Missouri"
+  $400K | 2024–2026 | PI: Dr. Krishnaswami
+- MU Research Council Seed Grant: "AI-powered dietary assessment tools"
+  $200K | 2024–2025 | PI: Dr. Krishnaswami
+- Previous funding: Robert Wood Johnson Foundation, Missouri Department of Health
+
+═══════════════════════════════════════════════════════════
+TEAM
+═══════════════════════════════════════════════════════════
+Principal Investigator:
+  Dr. Kiruba Krishnaswami, PhD, RD — nutritional epidemiologist, UCDavis PhD 2014,
+  postdoc at Harvard T.H. Chan School of Public Health 2014–2016, joined Mizzou 2016.
+  Research interests: dietary pattern analysis, chronic disease prevention, AI in nutrition.
+
+Postdoctoral Researchers:
+  Dr. James Okafor — metabolic health, insulin resistance, clinical trial design
+  Dr. Priya Nair — gut microbiome, metagenomics, 16S rRNA sequencing
+
+PhD Students:
+  Marcus Webb (3rd year) — dietary fiber, microbiome, expected graduation 2026
+  Alicia Fontaine (2nd year) — food systems, GIS, public health nutrition
+  Leo Chang (1st year) — machine learning, dietary image recognition, NLP
+
+AI Full Stack Engineer:
+  Rohitha Sresta Ganji — built FEAST Lab website, RAG chatbot, and AI analysis tools
+
+Undergraduate Research Assistants (6 current):
+  Available positions each semester — contact feast-lab@missouri.edu to apply
+
+Lab Manager:
+  Sarah Hendricks — lab operations, participant coordination, IRB submissions
