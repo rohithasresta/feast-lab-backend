@@ -1,9 +1,6 @@
 """
 FEAST Lab RAG Backend
 Built by Rohitha Sresta Ganji
-
-Deployed on Railway. Docs are loaded from /docs folder on startup.
-Homepage served at root /.
 """
 
 import os
@@ -17,7 +14,7 @@ from typing import List, Dict, Any
 from dataclasses import dataclass, field
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 # ── Config ────────────────────────────────────────────────────────────────
@@ -119,7 +116,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Pydantic models ───────────────────────────────────────────────────────
 class ChatRequest(BaseModel):
     message: str
     history: List[Dict] = []
@@ -129,20 +125,16 @@ class ChatResponse(BaseModel):
     sources: List[str]
     chunks_used: List[Dict]
 
-# ── Startup ───────────────────────────────────────────────────────────────
 @app.on_event("startup")
 async def startup():
     load_all_docs()
 
-# ── API routes (must be defined BEFORE static mount) ──────────────────────
-@app.get("/api")
-async def root():
-    return {
-        "status": "FEAST Lab RAG API running",
-        "total_chunks": vs.total_chunks,
-        "documents": vs.sources()
-    }
+# ── Homepage route ────────────────────────────────────────────────────────
+@app.get("/")
+async def homepage():
+    return FileResponse("static/index.html")
 
+# ── API routes ────────────────────────────────────────────────────────────
 @app.get("/status")
 async def status():
     return {
@@ -154,7 +146,7 @@ async def status():
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     if vs.total_chunks == 0:
-        raise HTTPException(status_code=503, detail="Vector store empty — docs not loaded yet.")
+        raise HTTPException(status_code=503, detail="Vector store empty.")
 
     query_embedding = get_embedding(req.message)
     results = vs.search(query_embedding, top_k=TOP_K)
@@ -190,6 +182,3 @@ RETRIEVED CONTEXT (top {TOP_K} chunks via FAISS cosine similarity):
         sources=list(set(r["source"] for r in results)),
         chunks_used=results
     )
-
-# ── Static files — mount LAST so API routes take priority ─────────────────
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
