@@ -3,6 +3,7 @@ FEAST Lab RAG Backend
 Built by Rohitha Sresta Ganji
 
 Deployed on Railway. Docs are loaded from /docs folder on startup.
+Homepage served at root /.
 """
 
 import os
@@ -16,11 +17,11 @@ from typing import List, Dict, Any
 from dataclasses import dataclass, field
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 # ── Config ────────────────────────────────────────────────────────────────
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]   # set in Railway dashboard
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 EMBED_MODEL    = "text-embedding-3-small"
 CHAT_MODEL     = "gpt-4o-mini"
 CHUNK_SIZE     = 400
@@ -110,7 +111,7 @@ def load_all_docs():
 
 # ── FastAPI ───────────────────────────────────────────────────────────────
 app = FastAPI(title="FEAST Lab RAG API")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -118,6 +119,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ── Pydantic models ───────────────────────────────────────────────────────
 class ChatRequest(BaseModel):
     message: str
     history: List[Dict] = []
@@ -127,17 +129,27 @@ class ChatResponse(BaseModel):
     sources: List[str]
     chunks_used: List[Dict]
 
+# ── Startup ───────────────────────────────────────────────────────────────
 @app.on_event("startup")
 async def startup():
     load_all_docs()
 
-@app.get("/")
+# ── API routes (must be defined BEFORE static mount) ──────────────────────
+@app.get("/api")
 async def root():
-    return {"status": "FEAST Lab RAG API running", "total_chunks": vs.total_chunks, "documents": vs.sources()}
+    return {
+        "status": "FEAST Lab RAG API running",
+        "total_chunks": vs.total_chunks,
+        "documents": vs.sources()
+    }
 
 @app.get("/status")
 async def status():
-    return {"total_chunks": vs.total_chunks, "documents": vs.sources(), "ready": vs.total_chunks > 0}
+    return {
+        "total_chunks": vs.total_chunks,
+        "documents": vs.sources(),
+        "ready": vs.total_chunks > 0
+    }
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
@@ -178,3 +190,6 @@ RETRIEVED CONTEXT (top {TOP_K} chunks via FAISS cosine similarity):
         sources=list(set(r["source"] for r in results)),
         chunks_used=results
     )
+
+# ── Static files — mount LAST so API routes take priority ─────────────────
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
