@@ -1,68 +1,282 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
 
-const dashboardUrls = {
+<head>
 
-  finger:'/finger-millet.html',
-  pearl:'/pearl-millet.html',
-  proso:'/proso-millet.html'
+<meta charset="UTF-8" />
 
-};
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0" />
 
-const dashboardTitles = {
+<title>FEAST Lab</title>
 
-  finger:'🌾 Finger Millet Research Dashboard',
-  pearl:'🌿 Pearl Millet Research Dashboard',
-  proso:'🌱 Proso Millet Research Dashboard'
+<style>
 
-};
-
-function openDashboard(key){
-
-  document.getElementById(
-    'dashboardOverlay'
-  ).style.display='flex';
-
-  document.getElementById(
-    'overlayTitle'
-  ).textContent = dashboardTitles[key];
-
-  document.getElementById(
-    'dashboardFrame'
-  ).src = dashboardUrls[key];
-
-  document.body.style.overflow='hidden';
-
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  background:#f6f3ed;
 }
 
-function closeDashboard(){
-
-  document.getElementById(
-    'dashboardOverlay'
-  ).style.display='none';
-
-  document.getElementById(
-    'dashboardFrame'
-  ).src='';
-
-  document.body.style.overflow='';
-
+nav{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  background:white;
+  border-bottom:1px solid #ddd;
 }
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#2d5a27;
+}
+
+.hero{
+  padding:120px 40px 80px;
+}
+
+.hero h1{
+  font-size:70px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:700px;
+  line-height:1.8;
+  color:#666;
+}
+
+.dashboard-section{
+  padding:80px 40px;
+  background:#17170f;
+}
+
+.dashboard-title{
+  color:white;
+  font-size:40px;
+  margin-bottom:40px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+
+  gap:20px;
+}
+
+.dashboard-card{
+
+  background:#24241c;
+
+  border-radius:16px;
+
+  padding:24px;
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+.dashboard-card:hover{
+
+  transform:translateY(-5px);
+
+  background:#2e2e23;
+}
+
+.dashboard-card h3{
+  margin-top:0;
+}
+
+#dashboardOverlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:black;
+
+  display:none;
+
+  flex-direction:column;
+
+  z-index:9999;
+}
+
+.overlay-top{
+
+  height:60px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  background:#111;
+
+  color:white;
+}
+
+#dashboardFrame{
+
+  width:100%;
+
+  flex:1;
+
+  border:none;
+}
+
+.close-btn{
+
+  background:#333;
+
+  color:white;
+
+  border:none;
+
+  padding:10px 16px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+FEASTLab
+</div>
+
+<div>
+Research · Data · Publications
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1>
+Food, Eating & Nutritional Science
+</h1>
+
+<p>
+The FEAST Lab investigates dietary patterns,
+metabolic health, and chronic disease using
+AI-driven nutritional analytics.
+</p>
+
+</section>
+
+<section class="dashboard-section">
+
+<h2 class="dashboard-title">
+Research Dashboards
+</h2>
+
+<div class="dashboard-grid">
+
+<div
+class="dashboard-card"
+onclick="openDashboard('finger')">
+
+<h3>
+🌾 Finger Millet Dashboard
+</h3>
+
+<p>
+Physical properties and nutrition analysis.
+</p>
+
+</div>
+
+<div
+class="dashboard-card"
+onclick="openDashboard('pearl')">
+
+<h3>
+🌿 Pearl Millet Dashboard
+</h3>
+
+<p>
+Color analytics and nutritional profiling.
+</p>
+
+</div>
+
+<div
+class="dashboard-card"
+onclick="openDashboard('proso')">
+
+<h3>
+🌱 Proso Millet Dashboard
+</h3>
+
+<p>
+Research findings and visualizations.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="dashboardOverlay">
+
+<div class="overlay-top">
+
+<div id="overlayTitle">
+Dashboard
+</div>
+
+<button
+class="close-btn"
+onclick="closeDashboard()">
+
+Close
+
+</button>
+
+</div>
+
+<iframe id="dashboardFrame"></iframe>
+
+</div>
 
 <script>
 
 const dashboardUrls = {
 
   finger:'/static/finger-millet.html',
+
   pearl:'/static/pearl-millet.html',
+
   proso:'/static/proso-millet.html'
 
 };
 
 const dashboardTitles = {
 
-  finger:'🌾 Finger Millet Research Dashboard',
-  pearl:'🌿 Pearl Millet Research Dashboard',
-  proso:'🌱 Proso Millet Research Dashboard'
+  finger:'Finger Millet Dashboard',
+
+  pearl:'Pearl Millet Dashboard',
+
+  proso:'Proso Millet Dashboard'
 
 };
 
@@ -74,15 +288,13 @@ function openDashboard(key){
 
   document.getElementById(
     'overlayTitle'
-  ).textContent =
+  ).innerText=
   dashboardTitles[key];
 
   document.getElementById(
     'dashboardFrame'
-  ).src =
+  ).src=
   dashboardUrls[key];
-
-  document.body.style.overflow='hidden';
 
 }
 
@@ -96,8 +308,9 @@ function closeDashboard(){
     'dashboardFrame'
   ).src='';
 
-  document.body.style.overflow='';
-
 }
 
 </script>
+
+</body>
+</html>
