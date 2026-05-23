@@ -182,3 +182,15 @@ RETRIEVED CONTEXT (top {TOP_K} chunks via FAISS cosine similarity):
         sources=list(set(r["source"] for r in results)),
         chunks_used=results
     )
+
+@app.get("/finger-millet.html")
+async def finger_millet():
+    return FileResponse("static/finger-millet.html")
+
+@app.get("/pearl-millet.html")
+async def pearl_millet():
+    return FileResponse("static/pearl-millet.html")
+
+@app.get("/proso-millet.html")
+async def proso_millet():
+    return FileResponse("static/proso-millet.html")
