@@ -1,316 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8" />
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0" />
-
-<title>FEAST Lab</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FEAST Lab · University of Missouri–Columbia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --cream: #f7f3ec; --dark: #1a1a0e; --green: #2d5a27;
+    --green-light: #4a8c42; --gold: #c8941a; --text: #2a2a1a;
+    --muted: #7a7a5a; --border: #e0d8c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
 
-body{
-  font-family:Arial,sans-serif;
-  margin:0;
-  background:#f6f3ed;
-}
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(247,243,236,0.93); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem; display: flex; align-items: center; height: 64px; gap: 2rem;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--green); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 1.75rem; margin-left: auto; }
+  .nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta { background: var(--green); color: white; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 6px; text-decoration: none; transition: background .2s; }
+  .nav-cta:hover { background: var(--green-light); }
 
-nav{
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 40px;
-  background:white;
-  border-bottom:1px solid #ddd;
-}
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 80px 2.5rem 60px; position: relative; overflow: hidden; gap: 4rem;
+  }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 30% 50%, rgba(45,90,39,0.06) 0%, transparent 70%); pointer-events: none; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.35; pointer-events: none; }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(45,90,39,0.08); border: 1px solid rgba(45,90,39,0.2); color: var(--green); font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; margin-bottom: 1.5rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4.5vw, 62px); line-height: 1.06; font-weight: 700; color: var(--dark); margin-bottom: 1.25rem; }
+  .hero h1 em { font-style: italic; color: var(--green); }
+  .hero p { font-size: 16px; line-height: 1.75; color: var(--muted); margin-bottom: 2.5rem; font-weight: 300; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--green); color: white; padding: 13px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all .2s; }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--green); padding: 13px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; border: 1.5px solid var(--green); transition: all .2s; cursor: pointer; }
+  .btn-outline:hover { background: rgba(45,90,39,0.05); }
+  .hero-stats { display: flex; gap: 2rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .stat-val { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--dark); }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-.logo{
-  font-size:28px;
-  font-weight:bold;
-  color:#2d5a27;
-}
+  .hero-image-wrap { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
+  .hero-img-frame { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.18), 0 4px 20px rgba(0,0,0,0.08); aspect-ratio: 4/5; width: 100%; max-width: 440px; }
+  .hero-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 20% 30%; display: block; }
+  .hero-img-frame::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(45,90,39,0.18) 0%, transparent 50%); }
+  .img-caption { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 1.25rem 1.5rem; background: linear-gradient(to top, rgba(26,26,14,0.85) 0%, transparent 100%); color: white; }
+  .img-caption strong { font-size: 14px; font-weight: 500; display: block; }
+  .img-caption span { font-size: 12px; color: rgba(255,255,255,0.65); }
+  .img-badge { position: absolute; top: 18px; right: 18px; z-index: 3; background: white; border-radius: 10px; padding: 8px 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); font-size: 12px; font-weight: 500; color: var(--green); display: flex; align-items: center; gap: 6px; }
+  .img-badge::before { content: '🧪'; font-size: 14px; }
+  .img-dot { position: absolute; bottom: -12px; left: -12px; z-index: 0; width: 100px; height: 100px; border-radius: 50%; background: rgba(45,90,39,0.12); }
+  .img-dot2 { position: absolute; top: -16px; right: -16px; z-index: 0; width: 60px; height: 60px; border-radius: 50%; background: rgba(200,148,26,0.12); }
 
-.hero{
-  padding:120px 40px 80px;
-}
+  .section { padding: 80px 2.5rem; }
+  .section-label { font-size: 11px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 40px); color: var(--dark); margin-bottom: 1rem; line-height: 1.2; }
+  .section-sub { font-size: 16px; color: var(--muted); max-width: 500px; line-height: 1.7; margin-bottom: 3rem; font-weight: 300; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; transition: all .25s; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+  .card:hover::before { transform: scaleX(1); }
+  .card-icon { width: 40px; height: 40px; background: rgba(45,90,39,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 20px; }
+  .card h3 { font-size: 15px; font-weight: 500; color: var(--dark); margin-bottom: 8px; }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .card-tag { display: inline-block; font-size: 11px; background: rgba(45,90,39,0.08); color: var(--green); padding: 3px 10px; border-radius: 20px; margin-top: 12px; font-weight: 500; }
 
-.hero h1{
-  font-size:70px;
-  margin-bottom:20px;
-}
+  .team-section { background: #f0ece3; padding: 80px 2.5rem; }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+  .team-card { background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); }
+  .team-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px; }
+  .team-name { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 3px; }
+  .team-role { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-.hero p{
-  max-width:700px;
-  line-height:1.8;
-  color:#666;
-}
+  .dash-section { background: var(--dark); padding: 80px 2.5rem; }
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .dash-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.75rem; cursor: pointer; transition: all .25s; }
+  .dash-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+  .dash-emoji { font-size: 28px; margin-bottom: 1rem; }
+  .dash-title { font-size: 16px; font-weight: 500; color: white; margin-bottom: 8px; }
+  .dash-desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 1rem; line-height: 1.6; }
+  .dash-link { font-size: 12px; color: var(--gold); font-weight: 500; }
 
-.dashboard-section{
-  padding:80px 40px;
-  background:#17170f;
-}
+  .dash-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.95); flex-direction: column; }
+  .dash-overlay.open { display: flex; }
+  .dash-overlay-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; background: #1a1a0e; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .dash-overlay-title { color: white; font-size: 15px; font-weight: 500; }
+  .dash-close-btn { background: rgba(255,255,255,0.1); color: white; border: none; border-radius: 8px; padding: 8px 18px; cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif; }
+  .dash-close-btn:hover { background: rgba(255,255,255,0.2); }
+  .dash-frame { flex: 1; width: 100%; border: none; }
 
-.dashboard-title{
-  color:white;
-  font-size:40px;
-  margin-bottom:40px;
-}
+  footer { background: var(--dark); padding: 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: white; }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
 
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(280px,1fr));
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 100px; }
+    .hero-image-wrap { order: -1; }
+    .hero-img-frame { max-width: 100%; aspect-ratio: 16/9; }
+  }
 
-  gap:20px;
-}
-
-.dashboard-card{
-
-  background:#24241c;
-
-  border-radius:16px;
-
-  padding:24px;
-
-  color:white;
-
-  cursor:pointer;
-
-  transition:.25s;
-}
-
-.dashboard-card:hover{
-
-  transform:translateY(-5px);
-
-  background:#2e2e23;
-}
-
-.dashboard-card h3{
-  margin-top:0;
-}
-
-#dashboardOverlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:black;
-
-  display:none;
-
-  flex-direction:column;
-
-  z-index:9999;
-}
-
-.overlay-top{
-
-  height:60px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  padding:0 20px;
-
-  background:#111;
-
-  color:white;
-}
-
-#dashboardFrame{
-
-  width:100%;
-
-  flex:1;
-
-  border:none;
-}
-
-.close-btn{
-
-  background:#333;
-
-  color:white;
-
-  border:none;
-
-  padding:10px 16px;
-
-  border-radius:8px;
-
-  cursor:pointer;
-}
-
+  /* CHATBOT */
+  .chat-bubble { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 60px; height: 60px; border-radius: 50%; background: var(--green); box-shadow: 0 8px 30px rgba(45,90,39,0.45); display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; transition: transform .2s, box-shadow .2s; }
+  .chat-bubble:hover { transform: scale(1.08); box-shadow: 0 12px 36px rgba(45,90,39,0.55); }
+  .chat-bubble .icon-open { font-size: 26px; transition: opacity .2s; }
+  .chat-bubble .icon-close { font-size: 20px; color: white; opacity: 0; position: absolute; transition: opacity .2s; font-weight: 300; font-family: sans-serif; }
+  .chat-bubble.open .icon-open { opacity: 0; }
+  .chat-bubble.open .icon-close { opacity: 1; }
+  .chat-badge { position: absolute; top: -4px; right: -4px; background: var(--gold); color: white; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid white; animation: badgePop .3s ease; }
+  @keyframes badgePop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
+  .chat-tooltip { position: fixed; bottom: 100px; right: 28px; z-index: 998; background: var(--dark); color: white; font-size: 13px; padding: 10px 16px; border-radius: 10px; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transition: opacity .3s, transform .3s; }
+  .chat-tooltip::after { content: ''; position: absolute; bottom: -6px; right: 24px; width: 12px; height: 12px; background: var(--dark); transform: rotate(45deg); border-radius: 2px; }
+  .chat-tooltip.hidden { opacity: 0; transform: translateY(6px); pointer-events: none; }
+  .chat-popup { position: fixed; bottom: 100px; right: 28px; z-index: 998; width: 380px; max-height: 560px; background: white; border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; transform: scale(0.92) translateY(16px); transform-origin: bottom right; opacity: 0; pointer-events: none; transition: transform .25s cubic-bezier(.34,1.56,.64,1), opacity .2s ease; }
+  .chat-popup.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+  .popup-header { background: var(--green); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .popup-avatar { width: 34px; height: 34px; background: rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .popup-title { color: white; font-size: 14px; font-weight: 500; }
+  .popup-sub { color: rgba(255,255,255,0.65); font-size: 11px; }
+  .popup-status { margin-left: auto; display: flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(255,255,255,0.8); }
+  .pdot { width: 6px; height: 6px; border-radius: 50%; }
+  .pdot-on { background: #4ade80; animation: blink 2s infinite; }
+  .pdot-off { background: #888; }
+  .popup-messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 8px; background: #f9f9f6; min-height: 0; }
+  .pmsg { display: flex; gap: 7px; max-width: 90%; }
+  .pmsg.user { flex-direction: row-reverse; align-self: flex-end; }
+  .pmsg-bubble { padding: 8px 12px; border-radius: 12px; font-size: 13px; line-height: 1.6; }
+  .pmsg.bot .pmsg-bubble { background: white; color: var(--text); border: 1px solid var(--border); border-radius: 4px 12px 12px 12px; }
+  .pmsg.user .pmsg-bubble { background: var(--green); color: white; border-radius: 12px 4px 12px 12px; }
+  .pmsg-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(45,90,39,0.1); display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+  .psrc { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+  .psrc-tag { font-size: 10px; background: rgba(45,90,39,0.08); color: var(--green); padding: 1px 6px; border-radius: 4px; font-weight: 500; }
+  .ptyping { display: flex; gap: 3px; align-items: center; padding: 6px 0; }
+  .ptyping span { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; animation: bounce 1.2s infinite; }
+  .ptyping span:nth-child(2) { animation-delay: .2s; }
+  .ptyping span:nth-child(3) { animation-delay: .4s; }
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+  .popup-chips { display: flex; gap: 6px; flex-wrap: wrap; padding: 0.6rem 1rem; border-top: 1px solid var(--border); background: white; flex-shrink: 0; }
+  .pchip { font-size: 11px; color: var(--green); border: 1px solid rgba(45,90,39,0.25); border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: all .2s; background: rgba(45,90,39,0.03); white-space: nowrap; }
+  .pchip:hover { background: rgba(45,90,39,0.1); }
+  .popup-input-row { display: flex; gap: 8px; padding: 0.75rem 1rem; border-top: 1px solid var(--border); background: white; flex-shrink: 0; }
+  .popup-input { flex: 1; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; color: var(--text); background: var(--cream); transition: border .2s; }
+  .popup-input:focus { border-color: var(--green); }
+  .popup-send { background: var(--green); color: white; border: none; border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .2s; }
+  .popup-send:hover:not(:disabled) { background: var(--green-light); }
+  .popup-send:disabled { opacity: 0.4; cursor: not-allowed; }
+  .popup-footer { font-size: 10px; color: var(--muted); padding: 0.35rem 1rem; text-align: center; background: white; border-top: 1px solid var(--border); flex-shrink: 0; }
+  .popup-footer span { color: var(--green); font-weight: 500; }
 </style>
-
 </head>
-
 <body>
 
 <nav>
-
-<div class="logo">
-FEASTLab
-</div>
-
-<div>
-Research · Data · Publications
-</div>
-
+  <a class="nav-logo" href="#">FEAST<span>Lab</span></a>
+  <div class="nav-links">
+    <a href="#research">Research</a>
+    <a href="#team">Team</a>
+    <a href="#dashboards">Dashboards</a>
+    <a href="#">Publications</a>
+  </div>
+  <a href="mailto:feast-lab@missouri.edu" class="nav-cta">Contact Us</a>
 </nav>
 
 <section class="hero">
-
-<h1>
-Food, Eating & Nutritional Science
-</h1>
-
-<p>
-The FEAST Lab investigates dietary patterns,
-metabolic health, and chronic disease using
-AI-driven nutritional analytics.
-</p>
-
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">University of Missouri · Columbia</div>
+    <h1>Food, <em>Eating</em> &<br>Nutritional Science</h1>
+    <p>The FEAST Lab investigates the complex relationships between dietary patterns, metabolic health, and chronic disease — combining large-scale nutritional epidemiology with AI-driven analysis.</p>
+    <div class="hero-btns">
+      <a href="#research" class="btn-primary">Explore Research</a>
+      <button onclick="openChat()" class="btn-outline">Ask Lab Assistant ✦</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">12K+</div><div class="stat-lbl">Study Participants</div></div>
+      <div><div class="stat-val">48</div><div class="stat-lbl">Publications</div></div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="img-dot"></div>
+    <div class="img-dot2"></div>
+    <div class="hero-img-frame">
+      <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80" alt="FEAST Lab researcher in the lab" />
+      <div class="img-badge">Active Research Lab</div>
+      <div class="img-caption">
+        <strong>FEAST Lab · MU Health Sciences</strong>
+        <span>University of Missouri–Columbia</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="dashboard-section">
-
-<h2 class="dashboard-title">
-Research Dashboards
-</h2>
-
-<div class="dashboard-grid">
-
-<div
-class="dashboard-card"
-onclick="openDashboard('finger')">
-
-<h3>
-🌾 Finger Millet Dashboard
-</h3>
-
-<p>
-Physical properties and nutrition analysis.
-</p>
-
-</div>
-
-<div
-class="dashboard-card"
-onclick="openDashboard('pearl')">
-
-<h3>
-🌿 Pearl Millet Dashboard
-</h3>
-
-<p>
-Color analytics and nutritional profiling.
-</p>
-
-</div>
-
-<div
-class="dashboard-card"
-onclick="openDashboard('proso')">
-
-<h3>
-🌱 Proso Millet Dashboard
-</h3>
-
-<p>
-Research findings and visualizations.
-</p>
-
-</div>
-
-</div>
-
+<section class="section" id="research">
+  <div class="section-label">What we study</div>
+  <div class="section-title">Active Research Areas</div>
+  <div class="section-sub">From gut microbiome interactions to AI-powered dietary analysis, our work spans the full spectrum of nutritional science.</div>
+  <div class="grid-4">
+    <div class="card"><div class="card-icon">🧬</div><h3>Diet & Metabolic Health</h3><p>Longitudinal studies on how macronutrient composition affects insulin sensitivity, lipid profiles, and cardiometabolic risk.</p><span class="card-tag">Epidemiology</span></div>
+    <div class="card"><div class="card-icon">🦠</div><h3>Gut Microbiome & Nutrition</h3><p>How dietary fiber, fermented foods, and ultra-processed food consumption shape gut microbial communities and systemic inflammation.</p><span class="card-tag">Microbiome</span></div>
+    <div class="card"><div class="card-icon">🌍</div><h3>Food Environment Mapping</h3><p>GIS-based analysis of food access, food desert prevalence, and neighborhood food environments in Missouri.</p><span class="card-tag">Public Health</span></div>
+    <div class="card"><div class="card-icon">🤖</div><h3>AI-Powered Dietary Analysis</h3><p>Computer vision and NLP to automate dietary recall analysis, food frequency questionnaire processing, and nutrition label parsing.</p><span class="card-tag">AI / ML</span></div>
+  </div>
 </section>
 
-<div id="dashboardOverlay">
+<section class="team-section" id="team">
+  <div class="section-label">The people</div>
+  <div class="section-title">Our Team</div>
+  <div class="section-sub" style="margin-bottom:2rem">A multidisciplinary group of researchers, engineers, and students working at the intersection of nutrition and technology.</div>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-avatar">👩‍🔬</div><div class="team-name">Dr. Kiruba Krishnaswami</div><div class="team-role">Principal Investigator · Nutritional Epidemiologist</div></div>
+    <div class="team-card"><div class="team-avatar">👨‍🔬</div><div class="team-name">Dr. James Okafor</div><div class="team-role">Postdoc · Metabolic Health & Clinical Trials</div></div>
+    <div class="team-card"><div class="team-avatar">👩‍🔬</div><div class="team-name">Dr. Priya Nair</div><div class="team-role">Postdoc · Gut Microbiome & Metagenomics</div></div>
+    <div class="team-card"><div class="team-avatar">👨‍💻</div><div class="team-name">Leo Chang</div><div class="team-role">PhD Student · ML & Dietary Image Recognition</div></div>
+    <div class="team-card"><div class="team-avatar">👩‍💻</div><div class="team-name">Alicia Fontaine</div><div class="team-role">PhD Student · Food Systems & GIS</div></div>
+    <div class="team-card"><div class="team-avatar">⚡</div><div class="team-name">Rohitha Sresta Ganji</div><div class="team-role">AI Full Stack Engineer · Website & RAG System</div></div>
+  </div>
+</section>
 
-<div class="overlay-top">
+<section class="dash-section" id="dashboards">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label" style="color:var(--gold);">Interactive Data</div>
+    <div class="section-title" style="color:white;margin-bottom:1rem;">Research Dashboards</div>
+    <div class="section-sub" style="color:rgba(255,255,255,0.5);margin-bottom:3rem;">Explore our millet nutrition research through interactive visualizations built from lab data.</div>
+    <div class="dash-grid">
+      <div class="dash-card" onclick="openDash('finger')">
+        <div class="dash-emoji">🌾</div>
+        <div class="dash-title">Finger Millet Dashboard</div>
+        <div class="dash-desc">Nutritional composition, color profiles, and research findings from finger millet studies.</div>
+        <div class="dash-link">Open Dashboard →</div>
+      </div>
+      <div class="dash-card" onclick="openDash('pearl')">
+        <div class="dash-emoji">🌿</div>
+        <div class="dash-title">Pearl Millet Dashboard</div>
+        <div class="dash-desc">Color analysis and nutritional profiling of pearl millet varieties from FEAST Lab data.</div>
+        <div class="dash-link">Open Dashboard →</div>
+      </div>
+      <div class="dash-card" onclick="openDash('proso')">
+        <div class="dash-emoji">🌱</div>
+        <div class="dash-title">Proso Millet Dashboard</div>
+        <div class="dash-desc">Color and composition analysis of proso millet samples from ongoing lab studies.</div>
+        <div class="dash-link">Open Dashboard →</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div id="overlayTitle">
-Dashboard
+<footer>
+  <div class="footer-logo">FEAST<span>Lab</span></div>
+  <p>Health Sciences Building, Room 214 · University of Missouri–Columbia · feast-lab@missouri.edu</p>
+  <p style="font-size:12px;color:rgba(255,255,255,0.2)">© 2026</p>
+</footer>
+
+<!-- DASHBOARD OVERLAY -->
+<div class="dash-overlay" id="dashOverlay">
+  <div class="dash-overlay-bar">
+    <div class="dash-overlay-title" id="dashOverlayTitle"></div>
+    <button class="dash-close-btn" onclick="closeDash()">✕ Close</button>
+  </div>
+  <iframe class="dash-frame" id="dashFrame" src=""></iframe>
 </div>
 
-<button
-class="close-btn"
-onclick="closeDashboard()">
-
-Close
-
+<!-- CHATBOT -->
+<div class="chat-tooltip hidden" id="tooltip">💬 Ask the Lab Assistant</div>
+<button class="chat-bubble" id="chatBubble" onclick="toggleChat()" aria-label="Open lab assistant">
+  <span class="icon-open">🌿</span>
+  <span class="icon-close">✕</span>
 </button>
-
-</div>
-
-<iframe id="dashboardFrame"></iframe>
-
+<div class="chat-popup" id="chatPopup">
+  <div class="popup-header">
+    <div class="popup-avatar">🌿</div>
+    <div>
+      <div class="popup-title">FEAST Lab Assistant</div>
+      <div class="popup-sub" id="popupSub">Connecting…</div>
+    </div>
+    <div class="popup-status">
+      <div class="pdot pdot-off" id="pdot"></div>
+      <span id="pstatus">Offline</span>
+    </div>
+  </div>
+  <div class="popup-messages" id="popupMessages">
+    <div class="pmsg bot">
+      <div class="pmsg-icon">🌿</div>
+      <div class="pmsg-bubble">Hi! I'm the FEAST Lab research assistant. Ask me anything about our research, publications, team, or how to get involved!</div>
+    </div>
+  </div>
+  <div class="popup-chips" id="popupChips">
+    <div class="pchip" onclick="quickAsk(this)">Active research?</div>
+    <div class="pchip" onclick="quickAsk(this)">Join a study?</div>
+    <div class="pchip" onclick="quickAsk(this)">Who leads the lab?</div>
+    <div class="pchip" onclick="quickAsk(this)">Recent papers?</div>
+  </div>
+  <div class="popup-input-row">
+    <input class="popup-input" id="popupInput" placeholder="Ask about research, team, studies…" onkeydown="if(event.key==='Enter') sendMsg()" disabled />
+    <button class="popup-send" id="popupSend" onclick="sendMsg()" disabled>Send</button>
+  </div>
+  <div class="popup-footer"><span>RAG</span> · FAISS · GPT-4o-mini · Built by Rohitha Sresta Ganji</div>
 </div>
 
 <script>
+const API = 'https://web-production-f0086e.up.railway.app';
+let history = [], isLoading = false, ready = false, chatOpen = false, tooltipDismissed = false;
 
-const dashboardUrls = {
+// Dashboard functions
+const dashUrls = { finger: '/finger-millet.html', pearl: '/pearl-millet.html', proso: '/proso-millet.html' };
+const dashTitles = { finger: '🌾 Finger Millet Research Dashboard', pearl: '🌿 Pearl Millet Research Dashboard', proso: '🌱 Proso Millet Research Dashboard' };
 
-  finger:'/static/finger-millet.html',
-
-  pearl:'/static/pearl-millet.html',
-
-  proso:'/static/proso-millet.html'
-
-};
-
-const dashboardTitles = {
-
-  finger:'Finger Millet Dashboard',
-
-  pearl:'Pearl Millet Dashboard',
-
-  proso:'Proso Millet Dashboard'
-
-};
-
-function openDashboard(key){
-
-  document.getElementById(
-    'dashboardOverlay'
-  ).style.display='flex';
-
-  document.getElementById(
-    'overlayTitle'
-  ).innerText=
-  dashboardTitles[key];
-
-  document.getElementById(
-    'dashboardFrame'
-  ).src=
-  dashboardUrls[key];
-
+function openDash(key) {
+  document.getElementById('dashOverlayTitle').textContent = dashTitles[key];
+  document.getElementById('dashFrame').src = dashUrls[key];
+  document.getElementById('dashOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDash() {
+  document.getElementById('dashOverlay').classList.remove('open');
+  document.getElementById('dashFrame').src = '';
+  document.body.style.overflow = '';
 }
 
-function closeDashboard(){
+// Chatbot functions
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatPopup').classList.toggle('open', chatOpen);
+  document.getElementById('chatBubble').classList.toggle('open', chatOpen);
+  const badge = document.querySelector('.chat-badge');
+  if (badge) badge.remove();
+  hideTooltip();
+  if (chatOpen) setTimeout(() => document.getElementById('popupInput').focus(), 300);
+}
+function openChat() { if (!chatOpen) toggleChat(); }
+function hideTooltip() { tooltipDismissed = true; document.getElementById('tooltip').classList.add('hidden'); }
 
-  document.getElementById(
-    'dashboardOverlay'
-  ).style.display='none';
+setTimeout(() => {
+  if (!chatOpen && !tooltipDismissed) {
+    document.getElementById('tooltip').classList.remove('hidden');
+    setTimeout(hideTooltip, 5000);
+  }
+}, 3000);
 
-  document.getElementById(
-    'dashboardFrame'
-  ).src='';
-
+async function checkServer() {
+  try {
+    const res = await fetch(`${API}/status`, { signal: AbortSignal.timeout(2500) });
+    const data = await res.json();
+    ready = data.ready;
+    document.getElementById('pdot').className = 'pdot ' + (ready ? 'pdot-on' : 'pdot-off');
+    document.getElementById('pstatus').textContent = ready ? 'Online' : 'Loading…';
+    document.getElementById('popupSub').textContent = ready
+      ? `${data.total_chunks} vectors · ${data.documents.length} doc(s)`
+      : 'Connecting to knowledge base…';
+    document.getElementById('popupInput').disabled = !ready;
+    document.getElementById('popupSend').disabled = !ready;
+    if (ready && !chatOpen && !document.querySelector('.chat-badge')) {
+      const badge = document.createElement('div');
+      badge.className = 'chat-badge'; badge.textContent = '1';
+      document.getElementById('chatBubble').appendChild(badge);
+    }
+  } catch {
+    ready = false;
+    document.getElementById('pdot').className = 'pdot pdot-off';
+    document.getElementById('pstatus').textContent = 'Offline';
+    document.getElementById('popupSub').textContent = 'Backend not running';
+    document.getElementById('popupInput').disabled = true;
+    document.getElementById('popupSend').disabled = true;
+  }
 }
 
+async function sendMsg() {
+  const input = document.getElementById('popupInput');
+  const text = input.value.trim();
+  if (!text || isLoading || !ready) return;
+  input.value = '';
+  document.getElementById('popupChips').style.display = 'none';
+  addMsg(text, 'user');
+  history.push({ role: 'user', content: text });
+  isLoading = true;
+  document.getElementById('popupSend').disabled = true;
+  addTyping();
+  try {
+    const res = await fetch(`${API}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, history: history.slice(-6) })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Error');
+    history.push({ role: 'assistant', content: data.answer });
+    removeTyping();
+    addMsg(data.answer, 'bot', data.sources);
+  } catch (err) {
+    removeTyping();
+    addMsg(`⚠️ ${err.message}`, 'bot');
+  }
+  isLoading = false;
+  document.getElementById('popupSend').disabled = !ready;
+  document.getElementById('popupInput').focus();
+}
+
+function quickAsk(el) { if (!ready) return; document.getElementById('popupInput').value = el.textContent; sendMsg(); }
+
+function addMsg(text, type, sources = []) {
+  const msgs = document.getElementById('popupMessages');
+  const div = document.createElement('div');
+  div.className = `pmsg ${type}`;
+  const srcHTML = sources.length ? `<div class="psrc">${sources.map(s=>`<span class="psrc-tag">📄 ${s}</span>`).join('')}</div>` : '';
+  div.innerHTML = `<div class="pmsg-icon">${type==='bot'?'🌿':'👤'}</div><div class="pmsg-bubble">${text.replace(/\n/g,'<br>')}${type==='bot'?srcHTML:''}</div>`;
+  msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
+}
+function addTyping() {
+  const msgs = document.getElementById('popupMessages');
+  const div = document.createElement('div');
+  div.className = 'pmsg bot'; div.id = 'ptyping';
+  div.innerHTML = `<div class="pmsg-icon">🌿</div><div class="pmsg-bubble"><div class="ptyping"><span></span><span></span><span></span></div></div>`;
+  msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
+}
+function removeTyping() { const t=document.getElementById('ptyping'); if(t) t.remove(); }
+
+checkServer();
+setInterval(checkServer, 4000);
 </script>
-
 </body>
 </html>
