@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visitor Map · FEAST Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f7f3ec; --dark: #1a1a0e; --green: #2d5a27;
+    --green-light: #4a8c42; --gold: #c8941a; --text: #2a2a1a;
+    --muted: #7a7a5a; --border: #e0d8c8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 2rem 1rem 3rem; }
+
+  .page-header { text-align: center; margin-bottom: 2rem; }
+  .page-label { font-size: 11px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .page-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 48px); color: white; margin-bottom: 0.5rem; }
+  .page-title em { font-style: italic; color: var(--gold); }
+  .page-sub { font-size: 14px; color: rgba(255,255,255,0.45); font-weight: 300; }
+
+  .stats-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .stat-box { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: white; }
+  .stat-lbl { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.07em; }
+
+  #globe-outer { position: relative; margin-bottom: 1.5rem; }
+  canvas { display: block; cursor: grab; border-radius: 50%; }
+  canvas:active { cursor: grabbing; }
+
+  .controls { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+  .ctrl-btn { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 6px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7); cursor: pointer; transition: all .2s; }
+  .ctrl-btn:hover { background: rgba(255,255,255,0.12); color: white; }
+
+  .tooltip-box { position: absolute; background: white; color: var(--text); border-radius: 8px; padding: 7px 12px; font-size: 12px; pointer-events: none; display: none; white-space: nowrap; z-index: 10; transform: translate(12px, -50%); }
+  .tooltip-box strong { display: block; font-size: 13px; font-weight: 500; }
+  .tooltip-box span { color: var(--muted); font-size: 11px; }
+
+  .location-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; width: 100%; max-width: 720px; }
+  .loc-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: background .2s; }
+  .loc-item:hover { background: rgba(255,255,255,0.1); }
+  .loc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: #378ADD; }
+  .loc-city { font-size: 12px; color: rgba(255,255,255,0.85); }
+  .loc-country { font-size: 10px; color: rgba(255,255,255,0.4); }
+  .loc-count { font-size: 11px; color: var(--gold); font-weight: 500; margin-left: auto; }
+
+  .empty-state { text-align: center; padding: 1rem 0; color: rgba(255,255,255,0.3); font-size: 13px; }
+
+  .back-link { margin-top: 2rem; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .back-link:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-label">FEAST Lab · Real-time</div>
+  <h1 class="page-title">Global <em>Visitors</em></h1>
+  <p class="page-sub">Every pin is a real visitor to this website — updated live.</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box"><div class="stat-num" id="stat-visits">—</div><div class="stat-lbl">Total visits</div></div>
+  <div class="stat-box"><div class="stat-num" id="stat-cities">—</div><div class="stat-lbl">Cities</div></div>
+  <div class="stat-box"><div class="stat-num" id="stat-countries">—</div><div class="stat-lbl">Countries</div></div>
+</div>
+
+<div id="globe-outer">
+  <canvas id="globe" width="480" height="480"></canvas>
+  <div class="tooltip-box" id="tip"><strong id="tip-city"></strong><span id="tip-detail"></span></div>
+</div>
+
+<div class="controls">
+  <button class="ctrl-btn" id="spin-btn" onclick="toggleSpin()">Pause rotation</button>
+  <button class="ctrl-btn" onclick="resetView()">Reset view</button>
+</div>
+
+<div class="location-grid" id="loc-grid">
+  <div class="empty-state" id="empty-msg">Loading visitor data…</div>
+</div>
+
+<a href="/" class="back-link">← Back to FEAST Lab</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const API = 'https://web-production-f0086e.up.railway.app';
+const W = 480, H = 480, R = 210;
+const canvas = document.getElementById('globe');
+const ctx = canvas.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+canvas.width = W * dpr; canvas.height = H * dpr;
+canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+ctx.scale(dpr, dpr);
+
+const proj = d3.geoOrthographic().scale(R).translate([W/2, H/2]).clipAngle(90);
+const pathGen = d3.geoPath(proj, ctx);
+const graticule = d3.geoGraticule()();
+const sphere = { type: 'Sphere' };
+
+let land = null, visitors = [], rotation = [20, -20, 0], autoSpin = true;
+let drag = false, dragStart = null, rotStart = null;
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  proj.rotate(rotation);
+
+  ctx.beginPath(); pathGen(sphere);
+  ctx.fillStyle = '#0d1f2d'; ctx.fill();
+  ctx.strokeStyle = 'rgba(55,138,221,0.3)'; ctx.lineWidth = 0.5; ctx.stroke();
+
+  if (land) {
+    ctx.beginPath(); pathGen(land);
+    ctx.fillStyle = '#1a3a1a'; ctx.fill();
+    ctx.strokeStyle = 'rgba(45,90,39,0.4)'; ctx.lineWidth = 0.4; ctx.stroke();
+  }
+
+  ctx.beginPath(); pathGen(graticule);
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 0.5; ctx.stroke();
+
+  // sort: hidden pins first, visible on top
+  const sorted = visitors.map(v => {
+    const [x, y] = proj([v.lng, v.lat]) || [null, null];
+    const cosA = Math.cos(v.lat * Math.PI / 180) *
+      Math.cos((v.lng + rotation[0]) * Math.PI / 180);
+    return { ...v, px: x, py: y, visible: cosA > 0 };
+  }).sort((a, b) => a.visible - b.visible);
+
+  sorted.forEach(v => {
+    if (!v.px) return;
+    const alpha = v.visible ? 1 : 0.15;
+    const r = Math.min(3 + Math.log(v.count + 1) * 2, 10);
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.arc(v.px, v.py, r, 0, Math.PI * 2);
+    ctx.fillStyle = '#c8941a';
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  });
+
+  // atmosphere glow
+  const atm = ctx.createRadialGradient(W/2, H/2, R - 5, W/2, H/2, R + 14);
+  atm.addColorStop(0, 'rgba(45,90,39,0.15)');
+  atm.addColorStop(1, 'rgba(45,90,39,0)');
+  ctx.beginPath(); pathGen(sphere);
+  ctx.fillStyle = atm; ctx.fill();
+}
+
+function animate() {
+  if (autoSpin && !drag) rotation[0] += 0.15;
+  draw();
+  requestAnimationFrame(animate);
+}
+
+// load world data
+d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
+  land = topojson.feature(world, world.objects.land);
+  animate();
+}).catch(() => animate());
+
+// drag to rotate
+canvas.addEventListener('mousedown', e => {
+  drag = true; dragStart = [e.offsetX, e.offsetY]; rotStart = [...rotation];
+});
+window.addEventListener('mouseup', () => { drag = false; });
+canvas.addEventListener('mousemove', e => {
+  if (drag) {
+    rotation[0] = rotStart[0] + (e.offsetX - dragStart[0]) * 0.3;
+    rotation[1] = Math.max(-75, Math.min(75, rotStart[1] - (e.offsetY - dragStart[1]) * 0.3));
+  }
+  // tooltip
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const tip = document.getElementById('tip');
+  let found = null, minD = 16;
+  visitors.forEach(v => {
+    const [px, py] = proj([v.lng, v.lat]) || [];
+    if (!px) return;
+    const d = Math.hypot(px - mx, py - my);
+    if (d < minD) { minD = d; found = { ...v, px, py }; }
+  });
+  if (found) {
+    tip.style.display = 'block';
+    tip.style.left = found.px + 'px';
+    tip.style.top = found.py + 'px';
+    document.getElementById('tip-city').textContent = found.city + ', ' + found.country;
+    document.getElementById('tip-detail').textContent = found.count + (found.count === 1 ? ' visit' : ' visits');
+  } else {
+    tip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('touchstart', e => {
+  const t = e.touches[0];
+  drag = true; dragStart = [t.clientX, t.clientY]; rotStart = [...rotation];
+}, { passive: true });
+canvas.addEventListener('touchmove', e => {
+  if (!drag) return;
+  const t = e.touches[0];
+  rotation[0] = rotStart[0] + (t.clientX - dragStart[0]) * 0.3;
+  rotation[1] = Math.max(-75, Math.min(75, rotStart[1] - (t.clientY - dragStart[1]) * 0.3));
+}, { passive: true });
+canvas.addEventListener('touchend', () => { drag = false; });
+
+function toggleSpin() {
+  autoSpin = !autoSpin;
+  document.getElementById('spin-btn').textContent = autoSpin ? 'Pause rotation' : 'Resume rotation';
+}
+function resetView() { rotation = [20, -20, 0]; }
+
+// load real visitor data
+async function loadVisitors() {
+  try {
+    const res = await fetch(`${API}/visitors`);
+    const data = await res.json();
+    visitors = data.locations || [];
+
+    const cities = visitors.length;
+    const countries = new Set(visitors.map(v => v.country)).size;
+    const total = visitors.reduce((s, v) => s + v.count, 0);
+
+    document.getElementById('stat-visits').textContent = total;
+    document.getElementById('stat-cities').textContent = cities;
+    document.getElementById('stat-countries').textContent = countries;
+
+    const grid = document.getElementById('loc-grid');
+    const empty = document.getElementById('empty-msg');
+
+    if (visitors.length === 0) {
+      empty.textContent = 'No visitors tracked yet — check back soon!';
+      return;
+    }
+    empty.remove();
+
+    // sort by count desc
+    const sorted = [...visitors].sort((a, b) => b.count - a.count);
+    sorted.forEach(v => {
+      const el = document.createElement('div');
+      el.className = 'loc-item';
+      el.innerHTML = `<div class="loc-dot"></div><div><div class="loc-city">${v.city}</div><div class="loc-country">${v.country}</div></div><div class="loc-count">${v.count}</div>`;
+      el.onclick = () => {
+        autoSpin = false;
+        rotation = [-v.lng, -v.lat, 0];
+        document.getElementById('spin-btn').textContent = 'Resume rotation';
+      };
+      grid.appendChild(el);
+    });
+  } catch (e) {
+    document.getElementById('empty-msg').textContent = 'Could not load visitor data.';
+  }
+}
+
+loadVisitors();
+</script>
+</body>
+</html>
