@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications · FEAST Lab · University of Missouri–Columbia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#f7f3ec;--dark:#1a1a0e;--green:#2d5a27;--green-light:#4a8c42;--gold:#c8941a;--text:#2a2a1a;--muted:#7a7a5a;--border:#e0d8c8;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(247,243,236,0.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;height:64px;gap:2rem;}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green);text-decoration:none;}
+  .nav-logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:1.75rem;margin-left:auto;}
+  .nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--green);}
+  .nav-cta{background:var(--green);color:white;font-size:13px;font-weight:500;padding:8px 18px;border-radius:6px;text-decoration:none;}
+
+  .page-hero{padding:120px 2.5rem 60px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#f0ece3 100%);}
+  .page-hero-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.35;pointer-events:none;}
+  .page-hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .section-label{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
+  .page-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);color:var(--dark);line-height:1.08;margin-bottom:1rem;}
+  .page-title em{font-style:italic;color:var(--green);}
+  .page-sub{font-size:15px;color:var(--muted);line-height:1.75;font-weight:300;max-width:520px;}
+  .hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;}
+  .stat-val{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--dark);}
+  .stat-lbl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.05em;}
+
+  .filter-bar{position:sticky;top:64px;z-index:40;background:rgba(247,243,236,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2.5rem;}
+  .filter-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.75rem;height:54px;overflow-x:auto;}
+  .filter-btn{font-size:12px;font-family:'DM Sans',sans-serif;font-weight:500;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
+  .filter-btn:hover{border-color:var(--green);color:var(--green);}
+  .filter-btn.active{background:var(--green);border-color:var(--green);color:white;}
+
+  .pub-layout{max-width:1100px;margin:0 auto;padding:48px 2.5rem 80px;}
+  .year-group{margin-bottom:3rem;}
+  .year-group.empty{display:none;}
+  .year-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:10px;border-bottom:2px solid var(--border);}
+  .year-badge{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--dark);}
+  .year-pill{font-size:11px;background:rgba(45,90,39,0.08);color:var(--green);padding:3px 10px;border-radius:20px;font-weight:600;}
+
+  /* CLICKABLE CARD */
+  .pub-card{background:white;border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.75rem;margin-bottom:1rem;transition:all .25s;position:relative;overflow:hidden;cursor:pointer;display:block;text-decoration:none;color:inherit;}
+  .pub-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+  .pub-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.09);}
+  .pub-card:hover::before{transform:scaleX(1);}
+  .pub-card.hidden{display:none;}
+  .pub-card-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+  .pub-card-body{flex:1;}
+  .pub-arrow{font-size:18px;color:var(--green);opacity:0;transition:opacity .2s,transform .2s;flex-shrink:0;margin-top:2px;}
+  .pub-card:hover .pub-arrow{opacity:1;transform:translateX(3px);}
+
+  .pub-meta{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
+  .pub-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;padding:3px 9px;border-radius:20px;}
+  .pub-tag.journal{background:rgba(45,90,39,0.1);color:var(--green);}
+  .pub-tag.conference{background:rgba(200,148,26,0.1);color:var(--gold);}
+  .pub-title{font-size:14px;font-weight:500;color:var(--dark);line-height:1.55;margin-bottom:5px;}
+  .pub-authors{font-size:12px;color:var(--muted);margin-bottom:4px;line-height:1.5;}
+  .pub-authors strong{color:var(--green);font-weight:500;}
+  .pub-venue{font-size:12px;color:var(--text);font-style:italic;}
+  .pub-doi{font-style:normal;color:var(--muted);font-size:11px;}
+
+  .sec-head{margin-bottom:1.25rem;margin-top:3rem;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--dark);margin-bottom:4px;}
+  .sec-sub{font-size:13px;color:var(--muted);}
+
+  .conf-card{background:white;border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.5rem;margin-bottom:0.75rem;transition:all .2s;cursor:pointer;display:block;text-decoration:none;color:inherit;}
+  .conf-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.07);}
+  .conf-card-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+  .conf-title{font-size:13px;font-weight:500;color:var(--dark);line-height:1.5;margin-bottom:4px;}
+  .conf-meta{font-size:11px;color:var(--muted);line-height:1.5;}
+  .conf-award{font-size:10px;font-weight:600;color:var(--gold);background:rgba(200,148,26,0.1);padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px;}
+  .conf-arrow{font-size:16px;color:var(--green);opacity:0;transition:opacity .2s;flex-shrink:0;}
+  .conf-card:hover .conf-arrow{opacity:1;}
+
+  .prep-list{display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;}
+  .prep-item{background:white;border:1px dashed var(--border);border-radius:10px;padding:1rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;}
+  .prep-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:5px;flex-shrink:0;}
+  .prep-title{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:3px;line-height:1.5;}
+  .prep-meta{font-size:11px;color:var(--muted);}
+  .prep-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:6px;}
+  .prep-status.review{background:rgba(45,90,39,0.08);color:var(--green);}
+  .prep-status.ready{background:rgba(200,148,26,0.1);color:var(--gold);}
+  .prep-status.prep{background:rgba(122,122,90,0.1);color:var(--muted);}
+
+  footer{background:var(--dark);padding:2.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:white;}
+  .footer-logo span{color:var(--gold);}
+  footer p{font-size:13px;color:rgba(255,255,255,0.35);}
+
+  @media(max-width:640px){nav,.page-hero,.pub-layout,.filter-bar{padding-left:1.25rem;padding-right:1.25rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">FEAST<span>Lab</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/#research">Research</a>
+    <a href="/publications.html" class="active">Publications</a>
+    <a href="/#team">Team</a>
+    <a href="mailto:feast-lab@missouri.edu" class="nav-cta">Contact Us</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div>
+      <div class="section-label">FEAST Lab · Mizzou</div>
+      <h1 class="page-title">Our <em>Publications</em></h1>
+      <p class="page-sub">Peer-reviewed research in sustainable food processing, millet science, upcycling, soy processing, and food systems engineering. Click any paper to open it.</p>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">20+</div><div class="stat-lbl">Journal Articles</div></div>
+      <div><div class="stat-val">30+</div><div class="stat-lbl">Conference Papers</div></div>
+      <div><div class="stat-val">2018–</div><div class="stat-lbl">Active Since</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterType('all',this)">All</button>
+    <button class="filter-btn" onclick="filterType('millets',this)">Millets & Grains</button>
+    <button class="filter-btn" onclick="filterType('soy',this)">Soy Processing</button>
+    <button class="filter-btn" onclick="filterType('upcycling',this)">Upcycling & Waste</button>
+    <button class="filter-btn" onclick="filterType('berries',this)">Berries & Fruits</button>
+    <button class="filter-btn" onclick="filterType('food-safety',this)">Food Safety</button>
+  </div>
+</div>
+
+<div class="pub-layout">
+
+  <!-- 2022 -->
+  <div class="year-group" id="year-2022">
+    <div class="year-header"><span class="year-badge">2022</span><span class="year-pill">5 publications</span></div>
+
+    <a class="pub-card" data-type="soy" href="https://doi.org/10.1007/s11947-021-02726-8" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Improving Process Sustainability by Optimizing Spray Drying Parameters: High Oleic Soymilk using Response Surface Methodology</div>
+          <div class="pub-authors">Singh, Priya, Landon Bilyeu and <strong>Krishnaswamy, Kiruba</strong></div>
+          <div class="pub-venue">Journal of Food and Bioprocess Technology (2022). <span class="pub-doi">DOI: 10.1007/s11947-021-02726-8</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="soy" href="https://doi.org/10.1016/j.lwt.2022.113760" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Spray drying process optimization: Drought resistant variety (W82) soymilk powder using response surface methodology (RSM)</div>
+          <div class="pub-authors">Singh, P., Bilyeu, L., & <strong>Krishnaswamy, K.</strong></div>
+          <div class="pub-venue">LWT, 166, 113760. <span class="pub-doi">DOI: 10.1016/j.lwt.2022.113760</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="soy upcycling" href="https://doi.org/10.1016/j.tifs.2022.08.015" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Sustainable zero-waste processing system for soybeans and soy by-product valorization</div>
+          <div class="pub-authors">Singh, P., & <strong>Krishnaswamy, K.</strong></div>
+          <div class="pub-venue">Trends in Food Science & Technology, 128, 331–344. <span class="pub-doi">DOI: 10.1016/j.tifs.2022.08.015</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="berries" href="https://doi.org/10.3389/fnut.2022.936189" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Quantification of Vitamins, Minerals, and Amino Acids in Black Walnut (Juglans nigra)</div>
+          <div class="pub-authors">Antora, Salma Akter, Khanh-Van Ho, Chung-Ho Lin, Andrew L. Thomas, Sarah T. Lovell, and <strong>Kiruba Krishnaswamy</strong></div>
+          <div class="pub-venue">Frontiers in Nutrition 9 (2022). <span class="pub-doi">DOI: 10.3389/fnut.2022.936189</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="berries" href="https://doi.org/10.1080/10408398.2021.1999901" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Sustainable Food Processing of Selected North American Native Berries to Support Agroforestry</div>
+          <div class="pub-authors">Ravichandran, Karishma Sri, and <strong>Krishnaswamy, Kiruba</strong></div>
+          <div class="pub-venue">Critical Reviews in Food Science and Nutrition, 2021, 1–26. <span class="pub-doi">DOI: 10.1080/10408398.2021.1999901</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- 2021 -->
+  <div class="year-group" id="year-2021">
+    <div class="year-header"><span class="year-badge">2021</span><span class="year-pill">5 publications</span></div>
+
+    <a class="pub-card" data-type="millets" href="https://doi.org/10.3389/fsufs.2021.599656" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Physical and structural characterization of underutilized climate resilient seed grains: Millets, Sorghum and Amaranth</div>
+          <div class="pub-authors">Geisen, Sarah, <strong>Krishnaswamy, Kiruba</strong>, and Myers, Rob</div>
+          <div class="pub-venue">Frontiers in Sustainable Food Systems, no. 5 (June): 158. <span class="pub-doi">DOI: 10.3389/fsufs.2021.599656</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="millets" href="https://doi.org/10.1080/10942912.2021.1975740" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Physical and functional properties of ancient grains and flours and their potential contribution to sustainable food processing</div>
+          <div class="pub-authors">Nani, Mercy, and <strong>Kiruba Krishnaswamy</strong></div>
+          <div class="pub-venue">International Journal of Food Properties 24, no. 1 (September): 1529–1547. <span class="pub-doi">DOI: 10.1080/10942912.2021.1975740</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="food-safety" href="https://doi.org/10.3390/foods10092199" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Hazard Analysis and Risk-Based Preventive Controls (HARPC): Current Food Safety and Quality Standards for Complementary Foods</div>
+          <div class="pub-authors">Malik, Sargun, <strong>Krishnaswamy, Kiruba</strong>, and Mustapha, Azlin</div>
+          <div class="pub-venue">Foods 10, no. 9 (2021): 2199. <span class="pub-doi">DOI: 10.3390/foods10092199</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="millets upcycling" href="https://doi.org/10.1111/jfpe.13878" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Physical properties of complementary food powder obtained from upcycling of Greek yogurt acid whey with kodo and proso millets</div>
+          <div class="pub-authors">Malik, Sargun, <strong>Krishnaswamy, Kiruba</strong>, and Mustapha, Azlin</div>
+          <div class="pub-venue">Journal of Food Process Engineering (2021): e13878. <span class="pub-doi">DOI: 10.1111/jfpe.13878</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="pub-card" data-type="millets upcycling" href="https://doi.org/10.1111/jfpp.16051" target="_blank" rel="noopener">
+      <div class="pub-card-inner">
+        <div class="pub-card-body">
+          <div class="pub-meta"><span class="pub-tag journal">Journal Article</span></div>
+          <div class="pub-title">Development and Functional Characterization of Complementary Food using Kodo and Proso Millet with Acid Whey from Greek Yogurt Processing</div>
+          <div class="pub-authors">Malik, Sargun, <strong>Krishnaswamy, Kiruba</strong>, and Mustapha, Azlin</div>
+          <div class="pub-venue">Journal of Food Processing and Preservation (2021): e16051. <span class="pub-doi">DOI: 10.1111/jfpp.16051</span></div>
+        </div>
+        <div class="pub-arrow">↗</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- CONFERENCES -->
+  <div class="sec-head">
+    <div class="section-label">Dissemination</div>
+    <div class="sec-title">Selected Conference Presentations & Posters</div>
+    <div class="sec-sub">2020–2023 · IFT, SOFE, ASABE, Agroforestry Symposium, Berry Health Benefits Symposium and more. Click to search.</div>
+  </div>
+
+  <a class="conf-card" href="https://www.ift.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Spray drying to produce novel phytochemical-rich ingredients from juice and pomace of American elderberry</div>
+        <div class="conf-meta">Ravichandran KS et al. · IFT 2023</div>
+        <span class="conf-award">🏆 Finalist — Fruit & Vegetable Products Division Oral Competition</span>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.berryhealthbenefitssymposium.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Microencapsulation of elderberry juice and pomace extract to produce phytochemical-rich ingredients</div>
+        <div class="conf-meta">Ravichandran KS et al. · Berry Health Benefits Symposium, Tampa FL, 2023</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.ift.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Spray drying microencapsulation of American elderberry pomace polyphenols to produce phytochemical-rich ingredients</div>
+        <div class="conf-meta">da Silva ES, Ravichandran KS et al. · Slovak University of Agriculture in Nitra</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.ift.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Optimization of spray drying parameters on American elderberry (Sambucus nigra subsp. Canadensis)</div>
+        <div class="conf-meta">Ravichandran KS et al. · IFT 2022 · CAFNR Research Symposium 2022 · Annual Elderberry Project Meeting 2022</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.foodengineeringconference.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Investigating the Effect of Drying Conditions and Identifying Vitamin B-12 Retention in Fortified Soymilk Powder</div>
+        <div class="conf-meta">Singh P & Krishnaswamy K · Society of Food Engineering (SOFE), NC State, Sept. 2022</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.foodengineeringconference.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Functional, Reconstitution, and Chemical Behavior Analysis of Spray Dried Soymeal Powder Using Maltodextrin and Gum Arabic as Drying Aids</div>
+        <div class="conf-meta">Singh P & Krishnaswamy K · Society of Food Engineering (SOFE), NC State, Sept. 2022</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://cafnr.missouri.edu" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">New Nutritious Sustainable Pasta Using Soy Processing By-products</div>
+        <div class="conf-meta">Singh P & Krishnaswamy K · MSEI, University of Missouri, Columbia MO, May 2022</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://cafnr.missouri.edu" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Improving Process Sustainability by Optimizing Spray Drying Parameters: High Oleic Soymilk Using Response Surface Methodology</div>
+        <div class="conf-meta">Singh P & Krishnaswamy K · 38th Annual RCAF, University of Missouri, April 2022</div>
+        <span class="conf-award">🥉 3rd Place Award</span>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.asabe.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Zero-waste processing: Physical characteristics of different cultivars of pawpaw fruit (Asimina triloba L.)</div>
+        <div class="conf-meta">Adainoo B, Crowell B, Thomas AL, Krishnaswamy K · ASABE Conference, July 2021</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.ift.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Sustainable food processing: physical and functional properties of barnyard, finger, little millets, sorghum grains, and flours</div>
+        <div class="conf-meta">Nani M & Krishnaswamy K · IFT21 FIRST · Agroforestry Symposium · Within Reach: Zero Hunger, 2021</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.ift.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">In-Vitro Digestibility and Physical Characterization of Complementary Food from Acid Whey, Kodo and Proso Millets</div>
+        <div class="conf-meta">Malik S, Krishnaswamy K, Mustapha A · IFT21 FIRST Conference, July 2021</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://deaton.missouri.edu" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Harnessing the pawpaw fruit to address food and nutrition security</div>
+        <div class="conf-meta">Adainoo B, Krishnaswamy K · Deaton Institute Within Reach: Zero Hunger, April 2021</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <a class="conf-card" href="https://www.ift.org" target="_blank" rel="noopener">
+    <div class="conf-card-inner">
+      <div>
+        <div class="conf-title">Utilization of Macro/Micro-Nutrients in Acid Whey for the Development of Millet-Based Probiotic Beverage</div>
+        <div class="conf-meta">Malik S, Krishnaswamy K, Mustapha A · IFT20 FIRST Conference, July 2020</div>
+      </div>
+      <div class="conf-arrow">↗</div>
+    </div>
+  </a>
+
+  <!-- IN PREP -->
+  <div class="sec-head" style="margin-top:3rem;">
+    <div class="section-label">Coming Soon</div>
+    <div class="sec-title">Manuscripts Under Review & In Preparation</div>
+  </div>
+
+  <div class="prep-list">
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Development and Characterization of Spray-dried Millet Acid Whey powder</div>
+      <div class="prep-meta">Nani M & Krishnaswamy K · <em>Food Research International</em> (IF: 6.475) <span class="prep-status prep">In Preparation</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Value Addition to Food Industry Waste: Spray-dried Acid Whey Encapsulated in Millet Matrix</div>
+      <div class="prep-meta">Nani M & Krishnaswamy K · <em>Frontiers in Nutrition</em> (IF: 6.576) <span class="prep-status prep">In Preparation</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Spray Drying Process Optimization: Drought resistant variety (W82) Soymilk Powder using RSM</div>
+      <div class="prep-meta">Singh P, Bilyeu L & Krishnaswamy K · <em>LWT Food Science and Technology</em> (IF: 4.952) <span class="prep-status review">Under Review</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Upcycling of mango processing waste to support circular economy in East Africa</div>
+      <div class="prep-meta">Hartranft B, Adainoo B et al. · <em>African Journal of Food, Nutrition and Development</em> <span class="prep-status review">Under Review</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Physical characterization of fruits from eight cultivars of the North American pawpaw (Asimina triloba)</div>
+      <div class="prep-meta">Adainoo B et al. · <em>Frontiers in Nutrition</em> <span class="prep-status ready">Ready for Submission</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Improving the Flavor Profile and Physiochemical Characterization of a Newly Developed High Oleic Low Linolenic Soybean Milk</div>
+      <div class="prep-meta">Singh P & Krishnaswamy K <span class="prep-status ready">Ready for Submission</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Evaluation of the Functional, Reconstitution, and Chemical Behavior of Spray-Dried Soymeal Using Maltodextrin and Gum Arabic</div>
+      <div class="prep-meta">Singh P & Krishnaswamy K <span class="prep-status ready">Ready for Submission</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Investigating the Effect of Drying Conditions and Identifying Vitamin B-12 Retention in Fortified Soymilk Powder</div>
+      <div class="prep-meta">Singh P & Krishnaswamy K <span class="prep-status prep">In Preparation</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Microencapsulation of Vitamin B-12 and In-vitro Release Profile in Different Food Media</div>
+      <div class="prep-meta">Singh P & Krishnaswamy K <span class="prep-status prep">In Preparation</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Need for improved prediction models for the thermophysical properties of fruits</div>
+      <div class="prep-meta">Adainoo B & Krishnaswamy K <span class="prep-status prep">In Preparation</span></div>
+    </div></div>
+    <div class="prep-item"><div class="prep-dot"></div><div>
+      <div class="prep-title">Wild pawpaw exploration to gain insights on texture profiles</div>
+      <div class="prep-meta">Adainoo B & Krishnaswamy K <span class="prep-status prep">In Preparation</span></div>
+    </div></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">FEAST<span>Lab</span></div>
+  <p>Health Sciences Building, Room 214 · University of Missouri–Columbia · feast-lab@missouri.edu</p>
+  <p style="font-size:12px;color:rgba(255,255,255,0.2)">© 2026</p>
+</footer>
+
+<script>
+function filterType(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pub-card').forEach(card => {
+    if (type === 'all') card.classList.remove('hidden');
+    else card.classList.toggle('hidden', !(card.dataset.type||'').includes(type));
+  });
+  document.querySelectorAll('.year-group').forEach(g => {
+    g.classList.toggle('empty', g.querySelectorAll('.pub-card:not(.hidden)').length === 0);
+  });
+}
+</script>
+</body>
+</html>

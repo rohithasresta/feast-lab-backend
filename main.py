@@ -4,17 +4,20 @@ Built by Rohitha Sresta Ganji
 """
 
 import os
+import json
+import time
+import httpx
 import faiss
-import fitz
+# import fitz
 import numpy as np
 
 from openai import OpenAI
 from pathlib import Path
 from typing import List, Dict, Any
 from dataclasses import dataclass, field
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel
 
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
@@ -25,8 +28,11 @@ CHUNK_OVERLAP  = 50
 TOP_K          = 4
 EMBED_DIM      = 1536
 DOCS_FOLDER    = Path("docs")
+VISITORS_FILE  = Path("data/visitors.json")
 
 client = OpenAI(api_key=OPENAI_API_KEY)
+
+# ── Vector store ──────────────────────────────────────────────────────────────
 
 @dataclass
 class VectorStore:
@@ -58,6 +64,8 @@ class VectorStore:
         return list(set(m["source"] for m in self.metadata))
 
 vs = VectorStore()
+
+# ── Doc loading ───────────────────────────────────────────────────────────────
 
 def extract_text(path: Path) -> str:
     if path.suffix.lower() == ".pdf":
@@ -103,6 +111,60 @@ def load_all_docs():
             print(f"   ✗ Error on {path.name}: {e}")
     print(f"\n✅ Ready — {vs.total_chunks} vectors across {len(vs.sources())} doc(s)")
 
+# ── Visitor tracking ──────────────────────────────────────────────────────────
+
+def load_visitors() -> List[Dict]:
+    if VISITORS_FILE.exists():
+        try:
+            return json.loads(VISITORS_FILE.read_text())
+        except Exception:
+            return []
+    return []
+
+def save_visitors(visitors: List[Dict]):
+    VISITORS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    VISITORS_FILE.write_text(json.dumps(visitors, indent=2))
+
+async def geolocate_ip(ip: str) -> Dict:
+    try:
+        async with httpx.AsyncClient(timeout=3.0) as c:
+            r = await c.get(f"http://ip-api.com/json/{ip}?fields=status,city,country,countryCode,lat,lon")
+            data = r.json()
+            if data.get("status") == "success":
+                return {
+                    "city": data["city"],
+                    "country": data["country"],
+                    "countryCode": data["countryCode"],
+                    "lat": data["lat"],
+                    "lng": data["lon"],
+                }
+    except Exception:
+        pass
+    return None
+
+def get_real_ip(request: Request) -> str:
+    forwarded = request.headers.get("x-forwarded-for")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host
+
+async def track_visit(request: Request):
+    ip = get_real_ip(request)
+    if ip in ("127.0.0.1", "::1") or ip.startswith("192.168.") or ip.startswith("10."):
+        return
+    visitors = load_visitors()
+    cutoff = time.time() - 86400
+    recent_ips = {v["ip"] for v in visitors if v.get("ts", 0) > cutoff}
+    if ip in recent_ips:
+        return
+    geo = await geolocate_ip(ip)
+    if not geo:
+        return
+    visitors.append({"ip": ip, "ts": time.time(), **geo})
+    save_visitors(visitors)
+
+# ── App ───────────────────────────────────────────────────────────────────────
+
 app = FastAPI(title="FEAST Lab RAG API")
 
 app.add_middleware(
@@ -126,7 +188,8 @@ async def startup():
     load_all_docs()
 
 @app.get("/")
-async def homepage():
+async def homepage(request: Request):
+    await track_visit(request)
     return FileResponse("static/index.html")
 
 @app.get("/status")
@@ -145,40 +208,52 @@ async def pearl_millet():
 async def proso_millet():
     return FileResponse("static/proso-millet.html")
 
+@app.get("/visitor-map.html")
+async def visitor_map():
+    return FileResponse("static/visitor-map.html")
+
+@app.get("/publications.html")
+async def publications():
+    return FileResponse("static/publications.html")
+
+@app.get("/track")
+async def track(request: Request):
+    await track_visit(request)
+    return JSONResponse({"ok": True})
+
+@app.get("/visitors")
+async def get_visitors():
+    visitors = load_visitors()
+    agg: Dict[str, Dict] = {}
+    for v in visitors:
+        key = f"{v['city']},{v['countryCode']}"
+        if key not in agg:
+            agg[key] = {"city": v["city"], "country": v["country"], "lat": v["lat"], "lng": v["lng"], "count": 0}
+        agg[key]["count"] += 1
+    return {"locations": list(agg.values())}
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     if vs.total_chunks == 0:
         raise HTTPException(status_code=503, detail="Vector store empty.")
-
     query_embedding = get_embedding(req.message)
     results = vs.search(query_embedding, top_k=TOP_K)
-
     context = "\n\n---\n\n".join(
         f"[Source: {r['source']} | Chunk {r['chunk_index']+1} | Similarity: {r['score']:.3f}]\n{r['text']}"
         for r in results
     )
-
     system_prompt = f"""You are the FEAST Lab assistant at the University of Missouri–Columbia.
 FEAST Lab is a nutrition and food science research lab directed by Dr. Kiruba Krishnaswami.
-
 Answer questions using ONLY the retrieved context below. Be concise, friendly, and accurate.
 If the answer isn't in the context, say you don't have that specific information and suggest
 contacting the lab at feast-lab@missouri.edu or calling (573) 882-4400.
 
 RETRIEVED CONTEXT (top {TOP_K} chunks via FAISS cosine similarity):
 {context}"""
-
     messages = [{"role": "system", "content": system_prompt}]
     messages += req.history[-6:]
     messages.append({"role": "user", "content": req.message})
-
-    response = client.chat.completions.create(
-        model=CHAT_MODEL,
-        messages=messages,
-        max_tokens=500,
-        temperature=0.3
-    )
-
+    response = client.chat.completions.create(model=CHAT_MODEL, messages=messages, max_tokens=500, temperature=0.3)
     return ChatResponse(
         answer=response.choices[0].message.content,
         sources=list(set(r["source"] for r in results)),
