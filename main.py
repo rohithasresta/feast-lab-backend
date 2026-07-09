@@ -8,7 +8,7 @@ import json
 import time
 import httpx
 import faiss
-# import fitz
+import fitz
 import numpy as np
 
 from openai import OpenAI
@@ -215,6 +215,14 @@ async def visitor_map():
 @app.get("/publications.html")
 async def publications():
     return FileResponse("static/publications.html")
+
+@app.get("/research.html")
+async def research():
+    return FileResponse("static/research.html")
+
+@app.get("/team.html")
+async def team():
+    return FileResponse("static/team.html")
 
 @app.get("/track")
 async def track(request: Request):
