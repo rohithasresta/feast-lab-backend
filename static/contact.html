@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team · Food Engineering & Sustainable Technologies (FEAST) Lab · Mizzou</title>
+<title>Contact & Join · FEAST Lab · University of Missouri</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--cream:#f7f3ec;--dark:#1a1a0e;--green:#2d5a27;--green-light:#4a8c42;--gold:#c8941a;--text:#2a2a1a;--muted:#7a7a5a;--border:#e0d8c8;}
@@ -15,35 +15,74 @@
   .nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s;}
   .nav-links a:hover,.nav-links a.active{color:var(--green);}
   .nav-cta{background:var(--green);color:white;font-size:13px;font-weight:500;padding:8px 18px;border-radius:6px;text-decoration:none;}
+  .nav-cta:hover{background:var(--green-light);}
 
-  .page-hero{padding:120px 2.5rem 64px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#f0ece3 100%);}
+  .page-hero{padding:120px 2.5rem 60px;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#f0ece3 100%);}
   .page-hero-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.35;pointer-events:none;}
-  .hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;}
+  .hero-content{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
   .section-label{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
   .page-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);color:var(--dark);line-height:1.08;margin-bottom:1rem;}
   .page-title em{font-style:italic;color:var(--green);}
-  .page-sub{font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;max-width:620px;}
+  .page-sub{font-size:15px;color:var(--muted);line-height:1.75;font-weight:300;}
 
-  .team-layout{max-width:1100px;margin:0 auto;padding:60px 2.5rem 80px;}
+  /* CONTACT CARD */
+  .contact-card{background:white;border-radius:16px;border:1px solid var(--border);padding:2rem;}
+  .contact-card-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--dark);margin-bottom:1.25rem;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .contact-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+  .contact-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+  .contact-label{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:2px;}
+  .contact-val{font-size:14px;color:var(--text);line-height:1.5;}
+  .contact-val a{color:var(--green);text-decoration:none;}
+  .contact-val a:hover{text-decoration:underline;}
 
-  .team-section-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--dark);margin-bottom:1.5rem;padding-bottom:10px;border-bottom:2px solid var(--border);}
-  .team-section-title span{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;font-family:'DM Sans',sans-serif;margin-left:12px;}
+  /* MAIN LAYOUT */
+  .main-layout{max-width:1100px;margin:0 auto;padding:60px 2.5rem 80px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
 
-  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-bottom:3rem;}
-  .team-card{background:white;border-radius:14px;padding:1.75rem;border:1px solid var(--border);transition:all .25s;display:flex;gap:1.25rem;align-items:flex-start;}
-  .team-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.07);}
-  .team-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--gold));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
-  .team-info{flex:1;}
-  .team-name{font-size:15px;font-weight:500;color:var(--dark);margin-bottom:3px;}
-  .team-role{font-size:12px;color:var(--muted);line-height:1.5;}
-  .team-now{font-size:11px;color:var(--green);font-weight:500;margin-top:4px;}
+  /* JOIN SECTION */
+  .join-section{}
+  .join-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--dark);margin-bottom:0.5rem;}
+  .join-title em{font-style:italic;color:var(--green);}
+  .join-sub{font-size:14px;color:var(--muted);margin-bottom:2rem;line-height:1.6;}
+
+  .position-card{background:white;border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;transition:all .2s;display:flex;align-items:center;gap:1rem;}
+  .position-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.07);}
+  .position-icon{font-size:28px;flex-shrink:0;}
+  .position-title{font-size:14px;font-weight:600;color:var(--dark);margin-bottom:3px;}
+  .position-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+  .requirements-box{background:rgba(45,90,39,0.04);border:1px solid rgba(45,90,39,0.15);border-radius:12px;padding:1.5rem;margin-top:1.5rem;}
+  .req-title{font-size:13px;font-weight:600;color:var(--green);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;}
+  .req-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .req-list li{font-size:13px;color:var(--text);padding-left:16px;position:relative;line-height:1.5;}
+  .req-list li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:11px;top:2px;}
+
+  .apply-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:white;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 24px;border-radius:8px;text-decoration:none;margin-top:1.5rem;transition:background .2s;}
+  .apply-btn:hover{background:var(--green-light);}
+
+  /* MIZZOU INFO */
+  .mizzou-box{background:white;border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-top:2rem;}
+  .mizzou-title{font-size:13px;font-weight:600;color:var(--dark);margin-bottom:8px;}
+  .mizzou-text{font-size:13px;color:var(--muted);line-height:1.7;}
+  .mizzou-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .mizzou-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:rgba(45,90,39,0.08);color:var(--green);}
+
+  /* MAP EMBED */
+  .map-section{background:#f0ece3;padding:48px 2.5rem;border-top:1px solid var(--border);}
+  .map-inner{max-width:1100px;margin:0 auto;}
+  .map-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--dark);margin-bottom:1.5rem;}
+  .map-frame{border-radius:12px;overflow:hidden;border:1px solid var(--border);}
 
   footer{background:var(--dark);padding:2.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
   .footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:white;}
   .footer-logo span{color:var(--gold);}
   footer p{font-size:13px;color:rgba(255,255,255,0.35);}
 
-  @media(max-width:640px){nav,.page-hero,.team-layout{padding-left:1.25rem;padding-right:1.25rem;}}
+  @media(max-width:900px){
+    .hero-content,.main-layout{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){
+    nav,.page-hero,.main-layout,.map-section{padding-left:1.25rem;padding-right:1.25rem;}
+  }
 </style>
 </head>
 <body>
@@ -54,115 +93,206 @@
     <a href="/">Home</a>
     <a href="/research.html">Research</a>
     <a href="/publications.html">Publications</a>
-    <a href="/team.html" class="active">Team</a>
-    <a href="/contact.html" class="nav-cta">Contact Us</a>
+    <a href="/team.html">Team</a>
+    <a href="/contact.html" class="nav-cta active">Contact Us</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="page-hero">
   <div class="page-hero-bg"></div>
   <div class="hero-content">
-    <div class="section-label">FEAST Lab · Mizzou</div>
-    <h1 class="page-title">Our <em>Team</em></h1>
-    <p class="page-sub">A transdisciplinary group of researchers, engineers, and students working at the interface of science, engineering, and technology to address food and nutrition security.</p>
+    <div>
+      <div class="section-label">FEAST Lab · Mizzou</div>
+      <h1 class="page-title">Get in <em>Touch</em></h1>
+      <p class="page-sub">We welcome collaborations, inquiries, and prospective students passionate about food science, engineering, and nutrition security.</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-title">📍 Contact Information</div>
+      <div class="contact-row">
+        <div class="contact-icon">👩‍🔬</div>
+        <div>
+          <div class="contact-label">Principal Investigator</div>
+          <div class="contact-val"><strong>Dr. Kiruba Krishnaswamy</strong><br>Associate Professor</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🏛️</div>
+        <div>
+          <div class="contact-label">Department</div>
+          <div class="contact-val">Department of Chemical and Biomedical Engineering<br><span style="font-size:12px;color:var(--muted);">Division of Food, Nutrition and Exercise Sciences (Joint Appointment)</span></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Address</div>
+          <div class="contact-val">244 Agricultural Engineering Building<br>Columbia, MO 65211</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val"><a href="mailto:krishnaswamyk@umsystem.edu">krishnaswamyk@umsystem.edu</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">🎓</div>
+        <div>
+          <div class="contact-label">University</div>
+          <div class="contact-val">University of Missouri, Columbia</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="team-layout">
+<!-- MAIN CONTENT -->
+<div class="main-layout">
 
-  <div class="team-section-title">Principal Investigator</div>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">👩‍🔬</div>
-      <div class="team-info">
-        <div class="team-name">Dr. Kiruba Krishnaswamy</div>
-        <div class="team-role">Associate Professor, Chemical and Biomedical Engineering · Division of Food, Nutrition and Exercise Sciences · University of Missouri</div>
-        <div class="team-now">krishnaswamyk@missouri.edu</div>
+  <!-- JOIN THE LAB -->
+  <div class="join-section">
+    <div class="section-label">Opportunities</div>
+    <h2 class="join-title">Join the <em>FEAST Family!</em></h2>
+    <p class="join-sub">Currently accepting applications from highly passionate and self-motivated individuals to join FEAST Lab at the University of Missouri.</p>
+
+    <div class="position-card">
+      <div class="position-icon">🔬</div>
+      <div>
+        <div class="position-title">Post-Doctoral Fellows</div>
+        <div class="position-desc">Advanced research positions in food engineering, nanotechnology, and food systems innovation.</div>
+      </div>
+    </div>
+    <div class="position-card">
+      <div class="position-icon">🎓</div>
+      <div>
+        <div class="position-title">PhD Students</div>
+        <div class="position-desc">Doctoral research in sustainable food processing, micronutrient delivery, and circular food systems.</div>
+      </div>
+    </div>
+    <div class="position-card">
+      <div class="position-icon">📚</div>
+      <div>
+        <div class="position-title">Undergraduate Students</div>
+        <div class="position-desc">Hands-on research experience in the FEAST Lab for motivated undergraduates.</div>
+      </div>
+    </div>
+
+    <div class="requirements-box">
+      <div class="req-title">Application Requirements</div>
+      <ul class="req-list">
+        <li>Full CV with education history and cumulative GPA/percentages</li>
+        <li>Awards, funding, skills & technologies</li>
+        <li>Publications, conference presentations/posters, patents</li>
+        <li>References</li>
+        <li>Shortlisted students will be invited for a Zoom interview</li>
+        <li>Note: &gt;85% of MS/PhD shortlisted applicants have 1–2 peer-reviewed publications</li>
+        <li>Students are highly encouraged to apply for awards and fellowships</li>
+      </ul>
+    </div>
+
+    <a href="mailto:krishnaswamyk@umsystem.edu?subject=Application to join FEAST Lab" class="apply-btn">
+      ✉️ Apply Now
+    </a>
+
+    <div class="mizzou-box">
+      <div class="mizzou-title">About University of Missouri</div>
+      <p class="mizzou-text">Dr. Krishnaswamy has joint appointment in the Dept of Chemical and Biomedical Engineering (COE) & the Division of Food, Nutrition and Exercise Sciences (CAFNR) at University of Missouri, Columbia. Interested students can apply to either COE or CAFNR.</p>
+      <p class="mizzou-text" style="margin-top:8px;">Mizzou is the flagship campus of the University of Missouri system, established in 1839 as the first public university west of the Mississippi River — a top-tier Research 1 (R1) University and member of the Association of American Universities (AAU).</p>
+      <div class="mizzou-badges">
+        <span class="mizzou-badge">R1 Research University</span>
+        <span class="mizzou-badge">AAU Member</span>
+        <span class="mizzou-badge">Est. 1839</span>
+        <span class="mizzou-badge">COE · CAFNR</span>
       </div>
     </div>
   </div>
 
-  <div class="team-section-title">Current Students <span>2024–Present</span></div>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Habib Nafisa Purba</div>
-        <div class="team-role">PhD Student</div>
-        <div class="team-now">Ecosystem to address micronutrient deficiency · NSF-CAREER</div>
-      </div>
+  <!-- QUICK LINKS & AFFILIATIONS -->
+  <div>
+    <div class="section-label">Quick Links</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--dark);margin-bottom:1.5rem;">Affiliated <em style="font-style:italic;color:var(--green);">Departments</em></h2>
+
+    <div style="display:flex;flex-direction:column;gap:0.75rem;">
+      <a href="https://engineering.missouri.edu" target="_blank" rel="noopener" style="background:white;border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;transition:all .2s;">
+        <span style="font-size:24px;">⚙️</span>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--dark);">College of Engineering (COE)</div>
+          <div style="font-size:12px;color:var(--muted);">engineering.missouri.edu</div>
+        </div>
+        <span style="margin-left:auto;color:var(--green);">↗</span>
+      </a>
+      <a href="https://cafnr.missouri.edu" target="_blank" rel="noopener" style="background:white;border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;transition:all .2s;">
+        <span style="font-size:24px;">🌾</span>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--dark);">CAFNR — College of Agriculture, Food and Natural Resources</div>
+          <div style="font-size:12px;color:var(--muted);">cafnr.missouri.edu</div>
+        </div>
+        <span style="margin-left:auto;color:var(--green);">↗</span>
+      </a>
+      <a href="https://engineering.missouri.edu/departments/chemical-biomedical/" target="_blank" rel="noopener" style="background:white;border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;transition:all .2s;">
+        <span style="font-size:24px;">🧪</span>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--dark);">Dept of Chemical and Biomedical Engineering</div>
+          <div style="font-size:12px;color:var(--muted);">Department page</div>
+        </div>
+        <span style="margin-left:auto;color:var(--green);">↗</span>
+      </a>
+      <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=B_q0BUIAAAAJ" target="_blank" rel="noopener" style="background:white;border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;transition:all .2s;">
+        <span style="font-size:24px;">📊</span>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--dark);">Google Scholar Profile</div>
+          <div style="font-size:12px;color:var(--muted);">1,633 citations · h-index 21</div>
+        </div>
+        <span style="margin-left:auto;color:var(--green);">↗</span>
+      </a>
+      <a href="https://www.youtube.com/@feastlab831" target="_blank" rel="noopener" style="background:white;border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.4rem;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;transition:all .2s;">
+        <span style="font-size:24px;">▶️</span>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--dark);">FEAST Lab YouTube Channel</div>
+          <div style="font-size:12px;color:var(--muted);">@feastlab831</div>
+        </div>
+        <span style="margin-left:auto;color:var(--green);">↗</span>
+      </a>
     </div>
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Kaarunya Shekar</div>
-        <div class="team-role">M.S. Student</div>
-        <div class="team-now">Alternative to TiO2 from upcycled food waste · USDA-NIFA</div>
+
+    <!-- COLLABORATIONS -->
+    <div style="margin-top:2rem;">
+      <div class="section-label">Collaborations</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--dark);margin-bottom:1rem;">Research <em style="font-style:italic;color:var(--green);">Partners</em></h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">NSF</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">USDA–NIFA</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">VentureWell</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">MU Coulter Accelerator</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">IFT</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">McGill University</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">University of Toronto</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">AAAS</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">Black & Veatch</span>
+        <span style="background:white;border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:12px;color:var(--text);">Missouri Soybean Council</span>
       </div>
     </div>
   </div>
-
-  <div class="team-section-title">PhD Alumni <span>Graduated</span></div>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Dr. Sargun Malik</div>
-        <div class="team-role">PhD · Complementary food formulations using millet-whey combinations</div>
-        <div class="team-now">→ Formulation Scientist, RNAissance AG LLC</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Dr. Priya Singh</div>
-        <div class="team-role">PhD · Spray drying optimization for soymilk and soy by-product valorization</div>
-        <div class="team-now">→ Process Engineer, Bunge Ltd.</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Dr. Mercy Nani</div>
-        <div class="team-role">PhD · Physical and functional properties of ancient grains and flours</div>
-        <div class="team-now">→ Research Scientist, ICL Ltd.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="team-section-title">M.S. Alumni <span>Graduated</span></div>
-  <div class="team-grid">
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Salma Akter Antora</div>
-        <div class="team-role">M.S. · Vitamins, minerals and amino acids in black walnut</div>
-        <div class="team-now">→ Research Assistant, University of South Florida</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Bezalel Adainoo</div>
-        <div class="team-role">M.S. · Physical characterization of pawpaw fruit cultivars</div>
-        <div class="team-now">→ PhD Student, UMass</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">🎓</div>
-      <div class="team-info">
-        <div class="team-name">Karishma Ravichandran</div>
-        <div class="team-role">M.S. · Spray drying and microencapsulation of American elderberry</div>
-        <div class="team-now">→ PhD Student, OSU</div>
-      </div>
-    </div>
-  </div>
-
 </div>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="map-inner">
+    <div class="map-title">📍 Find Us</div>
+    <div class="map-frame">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.4!2d-92.3201!3d38.9404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87dcaf1b4e1e4e1b%3A0x1!2s244+Agricultural+Engineering+Building%2C+Columbia%2C+MO+65211!5e0!3m2!1sen!2sus!4v1699999999999"
+        width="100%" height="320" style="border:0;display:block;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="footer-logo">FEAST<span>Lab</span></div>
-  <p>244 Agricultural Engineering Building · University of Missouri–Columbia · krishnaswamyk@missouri.edu</p>
+  <p>244 Agricultural Engineering Building · University of Missouri–Columbia · krishnaswamyk@umsystem.edu</p>
   <p style="font-size:12px;color:rgba(255,255,255,0.2)">© 2026</p>
 </footer>
 

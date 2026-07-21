@@ -224,6 +224,10 @@ async def research():
 async def team():
     return FileResponse("static/team.html")
 
+@app.get("/contact.html")
+async def contact():
+    return FileResponse("static/contact.html")
+
 @app.get("/track")
 async def track(request: Request):
     await track_visit(request)
