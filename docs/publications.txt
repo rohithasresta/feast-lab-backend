@@ -1,71 +1,74 @@
-FEAST LAB — PUBLICATIONS & PRESENTATIONS
-Food, Eating & Nutritional Science Technology Lab
-University of Missouri–Columbia
-Last updated: May 2026
+FEAST LAB — PUBLICATIONS
+Dr. Kiruba Krishnaswamy, FEAST Lab, University of Missouri
 
-Total publications: 48 peer-reviewed articles | 12 book chapters | 6 patents pending
-
-═══════════════════════════════════════════════════════════
-RECENT PUBLICATIONS (2024–2026)
-═══════════════════════════════════════════════════════════
+JOURNAL ARTICLES (Selected, 2019–2026)
 
 2026
-----
-1. Ganji RS, Chang L, Krishnaswami K. (2026). "Retrieval-augmented generation for automated
-   laboratory knowledge management in nutritional science research." npj Digital Medicine, 9(1), 88.
-   DOI: 10.1038/s41746-026-01088-3
-   [Open Access] — Describes the RAG-powered FEAST Lab assistant system
-
-2. Webb M, Nair P, Krishnaswami K. (2026). "High-fiber dietary intervention and gut microbiome
-   response: a randomized controlled trial." Gut, 75(3), 412–425.
-   DOI: 10.1136/gutjnl-2025-331892
-
-3. Fontaine A, Krishnaswami K. (2026). "School food environment and childhood obesity prevalence
-   in rural Missouri counties: a spatial analysis." Pediatrics, 157(4), e2025064821. [In press]
-
-4. Chang L, Krishnaswami K. (2026). "AutoRecall: Large language model-assisted 24-hour dietary
-   recall analysis reduces analyst processing time by 70%." Journal of Nutrition, 156(2), 489–501.
-   DOI: 10.1093/jn/nxac026
+- Rifat SM, Zhou J, Thomas AL, Lim TT, Krishnaswamy K. Evaluation of Vibratory Harvesting Systems for American Elderberry. HortScience 61(7), 1429–1443.
+- Mundassery A et al., Krishnaswamy K. Processing-induced modulation of nutraceutical and anti-nutritional profiles of beetroot variants targeting enhanced iron retention. Scientific Reports (2026).
+- Purba NH, Krishnaswamy K. Growing and marketing pawpaw in Missouri. University of Missouri Extension.
 
 2025
-----
-5. Okafor J, Krishnaswami K, Webb M. (2025). "Ultra-processed food consumption and gut microbiome
-   diversity: a cross-sectional analysis of 400 adults." Public Health Nutrition, 28(6), 1204–1218.
-   DOI: 10.1017/S1368980025001847
-
-6. Fontaine A, Krishnaswami K. (2025). "Food desert prevalence in rural Missouri: a GIS-based
-   assessment of food access and diet quality." Public Health Nutrition, 28(3), 541–553.
-   DOI: 10.1017/S1368980024003142
-
-7. Nair P, Webb M, Krishnaswami K. (2025). "Fermented food consumption and gut microbial
-   alpha diversity: a systematic review and meta-analysis." Nutrients, 17(8), 1342.
-   DOI: 10.3390/nu17081342
-
-8. Krishnaswami K, Okafor J. (2025). "Meal timing, circadian rhythm disruption, and
-   cardiometabolic risk: evidence from the MU Cohort Study." American Journal of Clinical
-   Nutrition, 121(4), 892–905. DOI: 10.1093/ajcn/nqae087
+- Purba NH, Krishnaswamy K. Exploring the potentials of neglected underutilized crops (NUCs): an integrative review for developing a sustainable food system model. npj Science of Food 9(1), 199. (11 citations)
+- Singh P, Lin CH, Krishnaswamy K. Vitamin B12 Encapsulation in Soymilk Powder and Analyzing the Impact of Spray-Drying Conditions on Powder Quality. Food and Bioprocess Technology 18(1), 678–700. (11 citations)
+- Huchteman MW et al., Krishnaswamy K. American Elderberry Performance, Yield, and Potential Profitability Are Influenced by Weed Management Method. HortScience 60(12), 2209–2217.
+- Perkins-Veazie P, Hoskin R, Ravichandran K, Krishnaswamy K et al. Advancing American Elderberry: Developing Innovative Value Added Products. HortScience 60(7).
 
 2024
-----
-9. Krishnaswami K, Fontaine A, Okafor J. (2024). "Dietary fiber intake and cardiometabolic
-   risk markers: 2-year findings from the MU Cohort Study." American Journal of Clinical
-   Nutrition, 119(3), 672–684. DOI: 10.1093/ajcn/nqad289
+- Adainoo B, Byers P, Krishnaswamy K et al. Long-Term Performance of Ten North American Pawpaw Cultivars in Missouri. International Journal of Fruit Science 24(1), 229–241.
+- Krishnaswamy K. Unlocking the Potential of American Elderberry: Drying Techniques to Protect its Bioactive Potential. University of Missouri Report.
 
-10. Chang L, Krishnaswami K. (2024). "FoodVision: Convolutional neural network for food image
-    recognition and automated portion estimation." Journal of the Academy of Nutrition and
-    Dietetics, 124(7), 876–889. DOI: 10.1016/j.jand.2024.02.011
+2023
+- Ravichandran KS, Silva ES, Moncada M, Perkins-Veazie P, Lila MA, Krishnaswamy K et al. Spray drying to produce novel phytochemical-rich ingredients from juice and pomace of American elderberry. Food Bioscience 55, 102981. (37 citations)
+- Ravichandran KS, Krishnaswamy K. Sustainable food processing of selected North American native berries to support agroforestry. Critical Reviews in Food Science and Nutrition 63(20), 4235–4260. (41 citations)
+- Lovell ST, Krishnaswamy K, Lin CH, Meier N, Revord RS, Thomas AL. Nuts and berries from agroforestry systems in temperate regions can form the foundation for a healthier human diet. Agroforestry Systems 97(8), 1347–1360. (22 citations)
+- Adainoo B, Thomas AL, Krishnaswamy K. A comparative study of edible coatings and freshness paper on the quality of fresh North American pawpaw fruits. Current Research in Food Science 7, 100541. (18 citations)
+- Nani M, Krishnaswamy K. A natural whitening alternative from upcycled food waste (acid whey) and underutilized grains (millet). Scientific Reports 13(1), 6482. (10 citations)
+- Nani M, Krishnaswamy K. Circular economy for food industry waste: Development and characterization of spray-dried acid whey encapsulated in millet matrix. ACS Food Science & Technology 3(1), 123–133. (24 citations)
+- Malik S, Bayati MB, Lin CH, Krishnaswamy K. Sustainable processing of Greek yogurt acid-whey waste to develop folic acid encapsulated millet powders. Sustainable Food Technology 1(3), 437–454. (5 citations)
+- Malik S, Mustapha A, Krishnaswamy K. Development of millet-acid whey formulations with nutritional, microbiological, and sensory characterization. Frontiers in Sustainable Food Systems 7, 1233689.
+- Vatandoust A, Krishnaswamy K, Li YO, Diosady L. Triple fortification of salt with iron, iodine and zinc oxide using extrusion. Journal of Food Engineering 339, 111258. (13 citations)
+- Singh P, Krishnaswamy K. The influence of flavoring components on the physicochemical properties of spray-dried high oleic and tofu line soymilk powder. Frontiers in Food Science and Technology 3, 1070453. (9 citations)
 
-═══════════════════════════════════════════════════════════
-SELECTED PRESENTATIONS & CONFERENCES
-═══════════════════════════════════════════════════════════
-- Nutrition 2026 (American Society for Nutrition), Boston MA — 3 oral presentations
-- Digestive Disease Week 2025, San Diego CA — microbiome session
-- American Public Health Association Annual Meeting 2025 — food environment symposium
-- MU Undergraduate Research Showcase 2026 — RAG lab assistant demo (Sresta Ganji)
+2022
+- Singh P, Krishnaswamy K. Sustainable zero-waste processing system for soybeans and soy by-product valorization. Trends in Food Science & Technology 128, 331–344. (128 citations)
+- Singh P, Bilyeu L, Krishnaswamy K. Spray drying process optimization: Drought resistant variety (W82) soymilk powder using RSM. LWT 166, 113760. (36 citations)
+- Singh P, Bilyeu L, Krishnaswamy K. Improving process sustainability by optimizing spray drying parameters: High oleic soymilk using RSM. Food and Bioprocess Technology 15(4), 833–851. (22 citations)
+- Malik S, Krishnaswamy K, Mustapha A. Development and functional characterization of complementary food using kodo and proso millet with acid whey. Journal of Food Processing and Preservation 46(9), e16051. (10 citations)
+- Adainoo B, Crowell B, Thomas AL, Lin CH, Krishnaswamy K et al. Physical characterization of frozen fruits from eight cultivars of North American pawpaw. Frontiers in Nutrition 9, 936192. (12 citations)
+- Antora AS, Krishnaswamy K, Ho KV, Lin CH, Thomas AL, Lovell ST. Quantification of Vitamins, Minerals, and Amino Acids in Black Walnut (Juglans nigra). Frontiers in Nutrition 9. (23 citations)
+- Singh P, Krishnaswamy K. Non-GMO-high oleic soybean meal value addition and studying functional and reconstitution behavior. International Journal of Food Properties 26(1), 708–728. (6 citations)
 
-═══════════════════════════════════════════════════════════
-IN PREPARATION / UNDER REVIEW
-═══════════════════════════════════════════════════════════
-- Low-carb vs. Mediterranean diet RCT: 12-month metabolic outcomes (target: NEJM, 2026)
-- Missouri Food Access Atlas: statewide dataset paper (target: American Journal of Preventive Medicine)
-- Mobile market intervention and diet quality in food deserts (target: JAMA Network Open)
+2021
+- Geisen S, Krishnaswamy K, Myers R. Physical and structural characterization of underutilized climate-resilient seed grains: millets, sorghum, and amaranth. Frontiers in Sustainable Food Systems 5, 599656. (20 citations)
+- Nani M, Krishnaswamy K. Physical and functional properties of ancient grains and flours and their potential contribution to sustainable food processing. International Journal of Food Properties 24(1), 1529–1547. (33 citations)
+- Malik S, Krishnaswamy K, Mustapha A. Physical properties of complementary food powder obtained from upcycling of Greek yogurt acid whey with kodo and proso millets. Journal of Food Process Engineering 44(11), e13878. (19 citations)
+- Malik S, Krishnaswamy K, Mustapha A. Hazard analysis and risk-based preventive controls (HARPC): Current food safety and quality standards for complementary foods. Foods 10(9), 2199. (47 citations)
+- Modupe O, Krishnaswamy K, Li YO, Diosady LL. Optimization of unit operations for microencapsulating ferrous fumarate during scale-up of double fortification of salt. Food Quality and Safety 5, fyab023. (8 citations)
+
+2020
+- Mirzapour-Kouhdasht A, Moosavi-Nasab M, Krishnaswamy K, Khalesi M. Optimization of gelatin production from Barred mackerel by-products. Food Hydrocolloids 108, 105970. (52 citations)
+
+2019
+- Diosady LL, Mannar MGV, Krishnaswamy K. Improving the lives of millions through new double fortification of salt technology. Maternal & Child Nutrition 15, e12773. (58 citations)
+- Modupe O, Krishnaswamy K, Diosady LL. Technology for triple fortification of salt with folic acid, iron, and iodine. Journal of Food Science 84(9), 2499–2506. (40 citations)
+
+BOOK CHAPTERS
+- Orsat V, Raghavan GSV, Krishnaswamy K. Microwave technology for food processing: An overview. The Microwave Processing of Foods, 100–116. (2017, 98 citations)
+- Krishnaswamy K, Orsat V. Sustainable delivery systems through green nanotechnology. Nano- and Microscale Drug Delivery Systems, 17–32. (2017, 90 citations)
+- Diosady LL, Krishnaswamy K. Micronutrient fortification of edible oils. Food Fortification in a Globalized World, 167–174. (2018, 8 citations)
+
+EARLY CAREER / NANOTECHNOLOGY (2012–2016)
+- Krishnaswamy K, Orsat V, Thangavel K. Synthesis and characterization of nano-encapsulated catechin by molecular inclusion with beta-cyclodextrin. Journal of Food Engineering 111(2), 255–264. (2012, 102 citations)
+- Krishnaswamy K, Orsat V, Gariépy Y, Thangavel K. Optimization of Microwave-Assisted Extraction of Phenolic Antioxidants from Grape Seeds (Vitis vinifera). Food and Bioprocess Technology 6(2), 441–455. (2013, 227 citations)
+- Krishnaswamy K, Vali H, Orsat V. Value-adding to grape waste: Green synthesis of gold nanoparticles. Journal of Food Engineering 142, 210–220. (2014, 220 citations)
+- Krishnaswamy K, Orsat V. Insight into the nanodielectric properties of gold nanoparticles synthesized from maple leaf and pine needle extracts. Industrial Crops and Products 66, 131–136. (2015, 32 citations)
+- Krishnaswamy K, Orsat V. Gold nanofluids synthesised using antioxidant catechin. Journal of Experimental Nanoscience 11(5), 328–344. (2016, 4 citations)
+
+MANUSCRIPTS UNDER REVIEW / IN PREPARATION
+- Nani M & Krishnaswamy K. Development and Characterization of Spray-dried Millet Acid Whey powder. Food Research International. (In Preparation)
+- Nani M & Krishnaswamy K. Value Addition to Food Industry Waste: Spray-dried Acid Whey Encapsulated in Millet Matrix. Frontiers in Nutrition. (In Preparation)
+- Hartranft B, Adainoo B et al. Upcycling of mango processing waste to support circular economy in East Africa. African Journal of Food, Nutrition and Development. (Under Review)
+- Adainoo B et al. Physical characterization of fruits from eight cultivars of North American pawpaw. Frontiers in Nutrition. (Ready for Submission)
+- Singh P & Krishnaswamy K. Improving Flavor Profile of High Oleic Low Linolenic Soybean Milk. (Ready for Submission)
+- Singh P & Krishnaswamy K. Microencapsulation of Vitamin B-12 and In-vitro Release Profile in Different Food Media. (In Preparation)

@@ -1,125 +1,120 @@
-FEAST LAB — PARTICIPATION, FAQ & CONTACT
-Food, Eating & Nutritional Science Technology Lab
-University of Missouri–Columbia
+FEAST LAB — FREQUENTLY ASKED QUESTIONS
 
-═══════════════════════════════════════════════════════════
-HOW TO JOIN A STUDY
-═══════════════════════════════════════════════════════════
-The FEAST Lab runs several studies that recruit community participants. Here's how to get involved:
+GENERAL QUESTIONS
 
-STEP 1: Check eligibility
-Each study has different requirements. General eligibility for most studies:
-- Age 18–65
-- No major metabolic conditions (unless specifically recruited for that population)
-- Able to attend in-person visits at MU campus (some studies are remote-friendly)
-- Not pregnant or planning pregnancy during study period
+Q: What is the FEAST Lab?
+A: FEAST stands for Food Engineering And Sustainable Technologies. The FEAST Lab is a transdisciplinary research group at the University of Missouri–Columbia, led by Dr. Kiruba Krishnaswamy. We work at the interface of science, engineering, and technology to address Hidden Hunger (micronutrient deficiency) through circular food systems innovation.
 
-STEP 2: Express interest
-Email feast-lab@missouri.edu with:
-- Your name and age
-- Which study you're interested in (or "any available study")
-- Brief health background (any conditions, medications)
-Our lab coordinator Sarah Hendricks will respond within 2 business days.
+Q: Where is the FEAST Lab located?
+A: The FEAST Lab is located at 244 Agricultural Engineering Building, University of Missouri, Columbia, MO 65211.
 
-STEP 3: Screening call
-A 15-minute phone screening to confirm eligibility and answer your questions.
+Q: How can I contact the FEAST Lab?
+A: Email Dr. Kiruba Krishnaswamy at krishnaswamyk@umsystem.edu. You can also visit the lab website at feastlabs.org.
 
-STEP 4: Consent and enrollment
-In-person or remote consent process, followed by baseline assessments.
+Q: What does the FEAST Lab research?
+A: The FEAST Lab focuses on three core areas:
+1. Food Fortification — fortifying foods with multiple micronutrients to address hidden hunger
+2. Innovative Technologies — nano-micro-macro scale encapsulation systems for micronutrient delivery
+3. Sustainable Food Systems Engineering — creating circular bioeconomy by upcycling food waste and recovering micronutrients from underutilized native plants
 
-═══════════════════════════════════════════════════════════
-CURRENTLY RECRUITING STUDIES
-═══════════════════════════════════════════════════════════
+Q: What is "Hidden Hunger"?
+A: Hidden Hunger refers to micronutrient deficiency — a lack of essential vitamins and minerals (like iron, iodine, folic acid, Vitamin B12) in the diet. It affects over 2 billion people worldwide and contributes to the double burden of malnutrition, which includes both wasting/stunting and overweight/obesity.
 
-1. MU COHORT STUDY (MOCS) — ONGOING ENROLLMENT
-   What: 5-year longitudinal dietary tracking and metabolic health monitoring
-   Who: Adults 25–60, any health status, Columbia/Boone County residents preferred
-   Commitment: Annual clinic visit (2 hrs) + quarterly online dietary recalls (20 min each)
-   Compensation: $50/annual visit + $10/dietary recall
-   Contact: mocs@missouri.edu
+Q: What is the FEAST Lab's mission?
+A: To advance breakthrough food and bioprocessing technologies that position food as medicine, strengthen food and nutrition security, and translate research innovations into real-world impact.
 
-2. FIBER INTERVENTION STUDY
-   What: 8-week high-fiber diet intervention with gut microbiome analysis
-   Who: Adults 18–55, low current fiber intake (<15g/day), no GI conditions
-   Commitment: 3 clinic visits + daily diet logs for 8 weeks
-   Compensation: $150 total ($50 per clinic visit)
-   Status: Actively recruiting, ~30 spots remaining
-   Contact: feast-fiber@missouri.edu
+JOINING THE LAB
 
-3. FERMENTED FOOD RCT
-   What: 12-week randomized trial of kefir, kimchi, or kombucha on gut health
-   Who: Adults 18–65, no probiotic supplements in past 3 months
-   Commitment: 4 clinic visits, daily food logs, stool sample collection
-   Compensation: $200 total + free fermented food products
-   Status: Recruiting, 40 spots remaining
-   Contact: feast-fermented@missouri.edu
+Q: How can I join the FEAST Lab?
+A: The FEAST Lab is currently accepting applications from highly passionate and self-motivated Post-Doctoral Fellows, PhD students, and Undergraduate students. Email krishnaswamyk@umsystem.edu with your application materials.
 
-4. MEAL TIMING STUDY
-   What: 6-week study of eating window timing and metabolic outcomes
-   Who: Adults 30–60 with BMI 25–35, no diabetes, not shift workers
-   Commitment: Wearable device (continuous glucose monitor), 2 clinic visits, food app
-   Compensation: $120 + keep the wearable device
-   Status: Full — join waitlist at feast-timing@missouri.edu
+Q: What should I include in my application?
+A: Please provide a full CV including:
+- Previous education history with cumulative GPA/percentages
+- Awards and funding received
+- Skills and technologies
+- Publications (if any)
+- Conference presentations, posters, and patents
+- References
 
-═══════════════════════════════════════════════════════════
-UNDERGRADUATE RESEARCH POSITIONS
-═══════════════════════════════════════════════════════════
-We accept undergraduate research assistants each semester. Positions are unpaid but
-offer course credit and strong mentorship toward graduate school applications.
+Q: What is the selection process?
+A: Students who are shortlisted will be invited for a Zoom interview. Note that more than 85% of students shortlisted for first-round MS/PhD interviews have at least 1-2 manuscripts published in peer-reviewed journals. Students are highly encouraged to apply for external awards and fellowships.
 
-Requirements:
-- MU student in good standing (any major, but nutrition, biology, CS preferred)
-- Minimum 10 hrs/week commitment
-- Interest in nutritional science or AI/health research
-- Some lab positions require food handler certification (we will help you get this)
+Q: Can I apply through either COE or CAFNR?
+A: Yes! Dr. Krishnaswamy has a joint appointment in the Department of Chemical and Biomedical Engineering (College of Engineering - COE) and the Division of Food, Nutrition and Exercise Sciences (College of Agriculture, Food and Natural Resources - CAFNR) at the University of Missouri. Interested students can apply through either college.
 
-To apply: Send resume + brief statement of interest to feast-lab@missouri.edu
-Deadline: 2 weeks before semester start. Rolling review for summer positions.
+Q: What kind of research would I do as a student in the FEAST Lab?
+A: Students in the FEAST Lab work on projects including:
+- Spray drying and microencapsulation of bioactives
+- Food fortification with micronutrients
+- Upcycling food industry waste (acid whey, elderberry pomace, mango waste)
+- Characterization of underutilized crops (millets, sorghum, pawpaw, elderberry)
+- Green nanotechnology for food applications
+- Food safety and complementary food development
 
-═══════════════════════════════════════════════════════════
-FREQUENTLY ASKED QUESTIONS
-═══════════════════════════════════════════════════════════
+Q: Is funding available for graduate students?
+A: The FEAST Lab has active NSF and USDA-funded projects. Funded positions may be available. Please contact Dr. Krishnaswamy directly to inquire about current openings.
 
-Q: Is participation in studies safe?
-A: All FEAST Lab studies are approved by the MU Institutional Review Board (IRB).
-   Dietary intervention studies carry minimal risk. We do not conduct invasive procedures.
-   Blood draws are performed by certified phlebotomists in our clinic.
+ABOUT DR. KRISHNASWAMY
 
-Q: Do I need to change my diet to participate?
-A: It depends on the study. Observational studies (like MOCS) ask you to maintain your
-   normal diet. Intervention studies ask you to follow a specific dietary pattern for
-   the study period.
+Q: What is Dr. Krishnaswamy's background?
+A: Dr. Kiruba Krishnaswamy is an Associate Professor with a joint appointment in Chemical and Biomedical Engineering and Food, Nutrition and Exercise Sciences at the University of Missouri. She holds:
+- Post-Doc from University of Toronto, Canada
+- PhD from McGill University, Canada
+- MTech from Tamil Nadu Agricultural University, India & McGill University, Canada (Commonwealth Scholar)
+- BTech from Tamil Nadu Agricultural University, India
+She has worked with industry and NGOs in India, Canada, the USA, and Kenya.
 
-Q: Are studies confidential?
-A: Yes. All data is de-identified. Your name is never associated with your health data
-   in any publication. We comply with HIPAA and all MU data security requirements.
+Q: What awards has Dr. Krishnaswamy received?
+A: Dr. Krishnaswamy received the prestigious NSF CAREER Award in 2024 for her research on the FEAST framework to address Hidden Hunger. She has also received funding from USDA-NIFA, VentureWell, MU Coulter Biomedical Accelerator, Missouri Soybean Merchandise Council, and industry partners.
 
-Q: Can I leave a study after joining?
-A: Yes. Participation is always voluntary. You may withdraw at any time without penalty.
+Q: Has Dr. Krishnaswamy been in the news?
+A: Yes! Dr. Krishnaswamy has been featured in:
+- Science Friday Radio Show with Host Flora Lichtman (May 2025) — reaching 2 million public radio listeners
+- Missourinet statewide radio network (2024)
+- Mizzou Impacts: "Taking on the global challenge of hidden hunger" (2024)
+- COE News: NSF CAREER Award feature (2024)
+- IFT Brain Food Blog: Q&A on underutilized and biofortified crops (2024)
+- Hindustan Times: Double-fortified salt fighting iron deficiency in India
+- CBC News (Canada): Iron-rich salt combating India's anemia epidemic
+- University of Toronto News: Double-fortified salt developed at U of T
 
-Q: I'm not in Columbia — can I still participate?
-A: Some studies are fully remote (online dietary recalls, app-based tracking). Others
-   require at least one in-person visit. We'll let you know during screening.
+CURRENT TEAM MEMBERS
 
-Q: How do I get my results?
-A: We share aggregate study results via our newsletter and website. Individual results
-   (like your microbiome profile or metabolic markers) are shared at clinic visits.
+Q: Who are the current students in the FEAST Lab?
+A: Current students include:
+- Nafisa Habib Purba (PhD Student) — working on ecosystem to address micronutrient deficiency, funded by NSF-CAREER
+- Kaarunya Shekar (M.S. Student) — working on alternatives to TiO2 from upcycled food waste, funded by USDA-NIFA
+- Sophia Sapp (M.S. Student) — food systems engineering research
 
-═══════════════════════════════════════════════════════════
-CONTACT & LOCATION
-═══════════════════════════════════════════════════════════
-FEAST Lab
-Health Sciences Building, Room 214
-University of Missouri–Columbia
-Columbia, MO 65211
+Q: Who are notable FEAST Lab alumni?
+A: PhD Alumni:
+- Dr. Sargun Malik — now Formulation Scientist at IFF
+- Dr. Priya Singh — now Process Engineer at Bunge Ltd.
+- Dr. Mercy Nani — now Research Scientist at ICL Ltd.
 
-General: feast-lab@missouri.edu
-Phone: (573) 882-4400
-Office hours: Monday–Friday, 9:00 AM – 5:00 PM
+M.S. Alumni:
+- Salma Akter Antora — now Research Assistant at University of South Florida
+- Bezalel Adainoo — now PhD Student at UMass
+- Karishma Sri Ravichandran — now PhD Student at OSU
 
-Dr. Kiruba Krishnaswami (PI): krishnaswami@missouri.edu
-Lab Coordinator Sarah Hendricks: hendricks-feast@missouri.edu
-Media/Press inquiries: Please contact MU Office of Research communications
+RESEARCH IMPACT
 
-Social: @FEASTLabMizzou on Twitter/X | feaslab.missouri.edu
-Newsletter: Sign up at feaslab.missouri.edu/newsletter
+Q: What is the real-world impact of FEAST Lab research?
+A: The FEAST Lab's double fortification of salt technology has been deployed in Uttar Pradesh, India, helping 24 million people combat iron deficiency anemia. The lab's work on elderberry, pawpaw, and agroforestry crops supports sustainable food systems in Missouri and beyond.
+
+Q: What SDGs does the FEAST Lab support?
+A: The FEAST Lab primarily supports:
+- SDG 2: Zero Hunger
+- SDG 12: Responsible Consumption and Production
+- SDG 3: Good Health and Well-Being
+
+Q: Does the FEAST Lab collaborate internationally?
+A: Yes, the lab has worked with partners in India, Canada, Kenya, Australia, and across the USA through NSF, USDA, FAO, and NGO partnerships.
+
+Q: Where can I watch FEAST Lab videos?
+A: Visit the FEAST Lab YouTube channel at https://www.youtube.com/@feastlab831
+
+Q: Where can I see the FEAST Lab's publications?
+A: Visit the publications page at feastlabs.org/publications.html or the Google Scholar profile at https://scholar.google.com/citations?view_op=list_works&hl=en&user=B_q0BUIAAAAJ
+Total citations: 1,633+ | h-index: 21 | i10-index: 33

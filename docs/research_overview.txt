@@ -1,97 +1,91 @@
 FEAST LAB — RESEARCH OVERVIEW
-Food, Eating & Nutritional Science Technology Lab
+Food Engineering and Sustainable Technologies (FEAST) Lab
 University of Missouri–Columbia
-Principal Investigator: Dr. Kiruba Krishnaswami, PhD, RD
-Location: Health Sciences Building, Room 214, Columbia, MO 65211
-Contact: feast-lab@missouri.edu | (573) 882-4400
-Website: feaslab.missouri.edu
+Principal Investigator: Dr. Kiruba Krishnaswamy
+Associate Professor, Department of Chemical and Biomedical Engineering
+Division of Food, Nutrition and Exercise Sciences (Joint Appointment)
+Email: krishnaswamyk@umsystem.edu
+Address: 244 Agricultural Engineering Building, Columbia, MO 65211
 
-═══════════════════════════════════════════════════════════
+ABOUT THE LAB
+The FEAST Lab (Food Engineering And Sustainable Technologies) is a transdisciplinary research group at the University of Missouri working at the interface of science, engineering, and technology to address Hidden Hunger — micronutrient deficiency affecting over 2 billion people globally.
+
 MISSION
-═══════════════════════════════════════════════════════════
-The FEAST Lab investigates the complex relationships between dietary patterns, metabolic health,
-and chronic disease. We combine large-scale nutritional epidemiology with AI-driven analysis
-to understand what — and how — we eat, and what it means for long-term health outcomes.
+To advance breakthrough food and bioprocessing technologies that position food as medicine, strengthen food and nutrition security, and translate research innovations into real-world impact.
 
-Our work spans basic nutritional science, public health research, and applied AI/ML for
-automated dietary assessment. We are committed to open science and community-engaged research,
-with a particular focus on underserved populations in rural Missouri.
+VISION
+Building a sustainable and nutritious future for all through circular food systems. The FEAST Lab aims to transform food loss into value, nourish people, and sustain the planet.
 
-═══════════════════════════════════════════════════════════
-ACTIVE RESEARCH AREAS
-═══════════════════════════════════════════════════════════
+WHY FEAST RESEARCH?
+Our world produces enough food to nourish its entire population, yet nearly one-third is lost or wasted each year. At the same time, over two billion people suffer from hidden hunger caused by micronutrient deficiencies, contributing to the global double burden of malnutrition (wasting/stunting AND overweight/obesity). The FEAST Research Group develops sustainable food systems innovations to address these interconnected challenges and advance both food and nutrition security.
 
-1. DIET & METABOLIC HEALTH
-   Study of how macronutrient composition, meal timing, and dietary patterns affect insulin
-   sensitivity, lipid profiles, and cardiometabolic risk across diverse populations.
-   Current projects:
-   - MU Cohort Study (n=3,200): 5-year longitudinal dietary tracking and metabolic outcomes
-   - Low-carbohydrate vs. Mediterranean diet RCT (n=180, recruiting)
-   - Meal timing and circadian rhythm study (n=60, active)
-   Lead researcher: Dr. Krishnaswami + Dr. James Okafor (postdoc)
+THREE CORE RESEARCH AREAS
 
-2. GUT MICROBIOME & NUTRITION
-   Characterizing how dietary fiber, fermented foods, and ultra-processed food consumption
-   shape gut microbial communities and systemic inflammation markers.
-   Current projects:
-   - Fiber intervention study: 8-week high-fiber diet and microbiome response (n=95, active)
-   - Ultra-processed food consumption and microbiome diversity (n=400 cross-sectional, analysis phase)
-   - Fermented food RCT: kefir, kimchi, kombucha effects on gut diversity (n=120, recruiting)
-   Lead researcher: Dr. Priya Nair (postdoc) + PhD student Marcus Webb
+1. FOOD FORTIFICATION
+Fortification of foods with multiple micronutrients to address hidden hunger (micronutrient deficiencies).
+- Double and triple fortification of salt with iron, iodine, and folic acid
+- Quadruple fortification of salt including Vitamin B12
+- Microencapsulation of ferrous fumarate for scale-up of double fortification
+- Vitamin B12 encapsulation in soymilk powder and spray-dried conditions analysis
+- Beetroot processing for enhanced iron retention
+- Technology for triple fortification of salt with iron, iodine, and zinc oxide using extrusion
+- Improving lives through new double fortification of salt technology (deployed in Uttar Pradesh, India reaching 24 million people)
 
-3. FOOD ENVIRONMENT MAPPING
-   GIS-based analysis of food access, food desert prevalence, and the relationship between
-   neighborhood food environments and diet quality in urban and rural Missouri.
-   Current projects:
-   - Missouri Food Access Atlas (statewide GIS dataset, publication in prep)
-   - Rural food desert intervention study: mobile market impact on diet quality (n=200)
-   - School food environment and childhood obesity in Boone County (in review, Pediatrics)
-   Lead researcher: PhD student Alicia Fontaine + Dr. Krishnaswami
+2. INNOVATIVE TECHNOLOGIES
+Scaling-up strategies and designing nano-micro-macro scale encapsulation systems for micronutrient delivery.
+- Spray drying and microencapsulation optimization using response surface methodology (RSM)
+- Green nanotechnology — synthesis of gold nanoparticles from grape waste (Vitis vinifera)
+- Beta-cyclodextrin molecular inclusion of catechin for nano-encapsulation
+- Microwave-assisted extraction of phenolic antioxidants from grape seeds
+- In-vitro release profiling of micronutrients in food media
+- Gold nanofluids from catechin synthesis and characterization
 
-4. AI-POWERED DIETARY ANALYSIS
-   Using computer vision, NLP, and large language models to automate 24-hour dietary recall
-   analysis, food frequency questionnaire processing, and nutrition label parsing at scale.
-   Current projects:
-   - FoodVision: CNN-based food image recognition and portion estimation (87% accuracy on 200-class dataset)
-   - AutoRecall: LLM-assisted 24-hour dietary recall processing (reduces analyst time by 70%)
-   - RAG-powered lab assistant: vector search across all lab documents for instant Q&A
-   Lead researcher: Sresta Ganji (AI Full Stack Engineer) + PhD student Leo Chang
+3. SUSTAINABLE FOOD SYSTEMS ENGINEERING
+Creating a circular bioeconomy by upcycling food loss/waste and recovering micronutrients from underutilized native plants.
+- Sustainable zero-waste processing system for soybeans and soy by-product valorization
+- Upcycling of Greek yogurt acid whey with kodo and proso millets into complementary food powders
+- Circular economy approach: spray-dried acid whey encapsulated in millet matrix
+- American elderberry (Sambucus nigra) spray drying and microencapsulation for phytochemical-rich ingredients
+- Pawpaw (Asimina triloba) physical characterization from eight North American cultivars
+- Black walnut (Juglans nigra) — quantification of vitamins, minerals, and amino acids
+- Ancient grains: physical and structural characterization of millets, sorghum, and amaranth
+- Mango waste upcycling to support circular economy in East Africa
+- Natural whitening alternative from upcycled food waste (acid whey) and underutilized grains
 
-═══════════════════════════════════════════════════════════
-FUNDING
-═══════════════════════════════════════════════════════════
-Total active funding: $2.4M
+FOCUS: ONE HEALTH — WOMEN AND CHILDREN
+The FEAST Lab's research is centered on SDG 2 — Zero Hunger, supporting UN Sustainable Development Goals including SDG 12 (Responsible Consumption) and SDG 3 (Good Health). Work spans USA, India, Canada, and Kenya.
 
-- NIH R01 DK118432: "Dietary patterns and cardiometabolic risk in diverse populations"
-  $1.8M | 2023–2027 | PI: Dr. Krishnaswami
-- USDA NIFA 2024-67001: "Food environment mapping and diet quality in rural Missouri"
-  $400K | 2024–2026 | PI: Dr. Krishnaswami
-- MU Research Council Seed Grant: "AI-powered dietary assessment tools"
-  $200K | 2024–2025 | PI: Dr. Krishnaswami
-- Previous funding: Robert Wood Johnson Foundation, Missouri Department of Health
+ACTIVE GRANTS AND FUNDING
+1. NSF CBET CAREER Award — "FEAST (Food Ecosystems And circularity for Sustainable Transformation) framework to address Hidden Hunger" — PI — 2024–2029
+2. NSF TIP — EcoTrast-GI: food-based oral contrast agent for GI radiographic imaging — Co-PI — 2024–2026
+3. USDA Foreign Ag Services — SEP24 Women in Food Systems — Co-PI — 2024–2026
+4. USDA–NIFA–AFRI — Seeding circular economy for upcycling food industry waste — PI — 2023–2025
+5. USDA–NIFA–SCRI — Moving American Elderberry into Mainstream Production and Processing — Co-PI — 2021–2026
+6. VentureWell — Food Innovations to address SDG 2 – Zero Hunger — PI — 2021–2024
+7. SuperSonic, LLC — Super White Technology Scale-up — PI — 2023
+8. NSF Convergence Accelerator Track J — Rapid detection technologies to mitigate food supply chain threats — Key Personnel — 2022–2023
+9. MU Coulter Biomedical Accelerator — EcoTrast-GI — PI — 2019–2023
+10. IFT — Use of Invasive Species to Address Malnutrition — Co-PI — 2021–2023
+11. NSF–SCC–PG — Developing Food Oases in Urban Food Deserts — Co-PI — 2020–2022
+12. Missouri Soybean Merchandise Council (MSMC) — Shelf stable SOYLEIC products fortified with Vitamin B12 — PI — 2020–2022
+13. Missouri Soybean Merchandise Council — High Oleic Soy-based Instant Powder through Spray Drying — PI — 2019–2020
+14. Black & Veatch — Utilization of acid whey from Greek yogurt processing — PI — 2019
 
-═══════════════════════════════════════════════════════════
-TEAM
-═══════════════════════════════════════════════════════════
-Principal Investigator:
-  Dr. Kiruba Krishnaswami, PhD, RD — nutritional epidemiologist, UCDavis PhD 2014,
-  postdoc at Harvard T.H. Chan School of Public Health 2014–2016, joined Mizzou 2016.
-  Research interests: dietary pattern analysis, chronic disease prevention, AI in nutrition.
+INVITED TALKS AND KEYNOTES
+- World Food Forum 2023: "Why We Need Innovations in Agrifood Systems?"
+- C20 Sustainable and Resilient Communities Conclave 2023: "Beyond Hunger: A Futuristic Vision for Global Food and Nutrition Security"
+- FAO Science & Innovation Forum 2022: "Upcycling of Food Waste to Create Circular Economy"
+- ACS Fall 2023: "Circular Food Systems: Upcycling Food Industry Waste for Micronutrient Recovery"
+- Australian Institute of Food Science & Technology 2023: Sustainable Food Systems Symposium
+- IFT 2023: Panelist — Food Science & Technology Solutions for Biofortified and Underutilized Crops
+- IOM – UN Migration 2022: "Combatting the Climate Crisis: Food Security and Sustainability"
+- AAAS Emerging Researchers National (ERN) Conference: "Systems Thinking for Inclusive Innovation and Global Sustainability" (2023 & 2024)
 
-Postdoctoral Researchers:
-  Dr. James Okafor — metabolic health, insulin resistance, clinical trial design
-  Dr. Priya Nair — gut microbiome, metagenomics, 16S rRNA sequencing
+GOOGLE SCHOLAR METRICS
+Total Citations: 1,633+ | h-index: 21 | i10-index: 33
+Google Scholar: https://scholar.google.com/citations?view_op=list_works&hl=en&user=B_q0BUIAAAAJ
 
-PhD Students:
-  Marcus Webb (3rd year) — dietary fiber, microbiome, expected graduation 2026
-  Alicia Fontaine (2nd year) — food systems, GIS, public health nutrition
-  Leo Chang (1st year) — machine learning, dietary image recognition, NLP
-
-AI Full Stack Engineer:
-  Rohitha Sresta Ganji — built FEAST Lab website, RAG chatbot, and AI analysis tools
-
-Undergraduate Research Assistants (6 current):
-  Available positions each semester — contact feast-lab@missouri.edu to apply
-
-Lab Manager:
-  Sarah Hendricks — lab operations, participant coordination, IRB submissions
+AFFILIATED DEPARTMENTS
+- Department of Chemical and Biomedical Engineering, College of Engineering (COE)
+- Division of Food, Nutrition and Exercise Sciences, CAFNR
+- University of Missouri, Columbia — R1 Research University, AAU Member, established 1839
