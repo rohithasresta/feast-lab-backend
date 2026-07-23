@@ -244,6 +244,45 @@ async def get_visitors():
         agg[key]["count"] += 1
     return {"locations": list(agg.values())}
 
+@app.get("/visitors/download")
+async def download_visitors():
+    from fastapi.responses import StreamingResponse
+    import csv, io
+    visitors = load_visitors()
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["City", "Country", "Country Code", "Latitude", "Longitude", "Visit Count", "Last Visit"])
+    
+    # Aggregate by city
+    agg: Dict[str, Dict] = {}
+    for v in visitors:
+        key = f"{v['city']},{v.get('countryCode','')}"
+        if key not in agg:
+            agg[key] = {
+                "city": v["city"],
+                "country": v["country"],
+                "countryCode": v.get("countryCode", ""),
+                "lat": v["lat"],
+                "lng": v["lng"],
+                "count": 0,
+                "last_visit": v.get("ts", 0)
+            }
+        agg[key]["count"] += 1
+        if v.get("ts", 0) > agg[key]["last_visit"]:
+            agg[key]["last_visit"] = v.get("ts", 0)
+    
+    import datetime
+    for row in sorted(agg.values(), key=lambda x: x["count"], reverse=True):
+        last = datetime.datetime.fromtimestamp(row["last_visit"]).strftime("%Y-%m-%d %H:%M") if row["last_visit"] else ""
+        writer.writerow([row["city"], row["country"], row["countryCode"], row["lat"], row["lng"], row["count"], last])
+    
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=feast_lab_visitors.csv"}
+    )
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     if vs.total_chunks == 0:

@@ -12,13 +12,13 @@
     --muted: #7a7a5a; --border: #e0d8c8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: #0d1a0d; color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 2rem 1rem 3rem; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 2rem 1rem 3rem; }
 
   .page-header { text-align: center; margin-bottom: 2rem; }
   .page-label { font-size: 11px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
   .page-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 48px); color: white; margin-bottom: 0.5rem; }
   .page-title em { font-style: italic; color: var(--gold); }
-  .page-sub { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 300; }
+  .page-sub { font-size: 14px; color: rgba(255,255,255,0.45); font-weight: 300; }
 
   .stats-row { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
   .stat-box { text-align: center; }
@@ -84,7 +84,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
-const API = 'https://feast-lab.onrender.com';
+const API = 'https://web-production-f0086e.up.railway.app';
 const W = 480, H = 480, R = 210;
 const canvas = document.getElementById('globe');
 const ctx = canvas.getContext('2d');
@@ -107,16 +107,16 @@ function draw() {
 
   ctx.beginPath(); pathGen(sphere);
   ctx.fillStyle = '#0d1f2d'; ctx.fill();
-  ctx.strokeStyle = 'rgba(100,160,220,0.4)'; ctx.lineWidth = 0.5; ctx.stroke();
+  ctx.strokeStyle = 'rgba(55,138,221,0.3)'; ctx.lineWidth = 0.5; ctx.stroke();
 
   if (land) {
     ctx.beginPath(); pathGen(land);
     ctx.fillStyle = '#1a3a1a'; ctx.fill();
-    ctx.strokeStyle = 'rgba(45,90,39,0.3)'; ctx.lineWidth = 0.4; ctx.stroke();
+    ctx.strokeStyle = 'rgba(45,90,39,0.4)'; ctx.lineWidth = 0.4; ctx.stroke();
   }
 
   ctx.beginPath(); pathGen(graticule);
-  ctx.strokeStyle = 'rgba(0,0,0,0.06)'; ctx.lineWidth = 0.5; ctx.stroke();
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 0.5; ctx.stroke();
 
   // sort: hidden pins first, visible on top
   const sorted = visitors.map(v => {
