@@ -228,6 +228,10 @@ async def team():
 async def contact():
     return FileResponse("static/contact.html")
 
+@app.get("/news.html")
+async def news():
+    return FileResponse("static/news.html")
+
 @app.get("/track")
 async def track(request: Request):
     await track_visit(request)
